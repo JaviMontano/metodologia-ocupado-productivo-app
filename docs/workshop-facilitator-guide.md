@@ -20,4 +20,3 @@ Pedir evidencia concreta. Si alguien dice "estoy ocupado", pedir actividades, ho
 ## Cierre esperado
 
 Cada participante debe tener un Markdown exportado, un JSON exportado y una frase de decision que pueda ejecutarse la semana siguiente. [CONFIG]
-

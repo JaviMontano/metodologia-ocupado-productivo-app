@@ -21,4 +21,8 @@ El despliegue es manual: subir archivos del repo completo por File Manager o FTP
 4. Export Markdown y JSON descarga archivos.
 5. Cerrar y limpiar sesion reinicia el estado.
 6. Documento funcional, documento tecnico y prototipos abren desde navegacion.
+## Workshop BMAD y Gemini en Hostinger
 
+Subir tambien `workshop-bmad.html`, `assets/gemini-workshop.js`, `assets/metodologia_logo_primary.png`, `_bmad/`, `.agent/`, `.agents/` y `docs/bmad-workshop-help.md` si el objetivo es que el estudiante revise el metodo completo desde el hosting. [CONFIG]
+
+La app base sigue funcionando sin internet. El chatbot multimodal solo llama Gemini si el usuario pega su propio token de Google AI Studio. [CONFIG]

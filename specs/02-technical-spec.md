@@ -31,4 +31,8 @@ Clave: `metodologia.ocupadoProductivo.session.v1`. El valor es JSON serializado 
 ## Compatibilidad
 
 Navegadores modernos con soporte de `localStorage`, `Blob`, `URL.createObjectURL` y JavaScript ES6 basico. [CONFIG]
+## Cliente Gemini BYOK
 
+La integracion se implementa en `assets/gemini-workshop.js`. Usa `sessionStorage` para token temporal y `localStorage` solo si el usuario pide recordar. El endpoint usado es `generateContent` de Gemini con modelo editable y default `gemini-2.5-flash`. [CONFIG]
+
+Los archivos cargados se procesan localmente con `FileReader`: texto como `text`, imagenes/PDF como `inline_data`. [CONFIG]

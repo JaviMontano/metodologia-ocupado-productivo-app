@@ -24,4 +24,10 @@ Esta mini app es un material academico de MetodologIA. Opera sin login, guarda d
 ## Despliegue manual
 
 Sube todos los archivos y carpetas del repo a `public_html` o a una subcarpeta de Hostinger. No hay build, backend, login, base de datos ni variables de entorno. [CONFIG]
+## Workshop BMAD + Gemini
 
+Entrada del taller: `workshop-bmad.html`. [DOC]
+
+BMAD esta instalado para Google Antigravity y Codex con BMM, BMB y TEA. Usa `bmad-help` desde la raiz del repo para detectar el siguiente paso. [CONFIG]
+
+El chatbot Gemini es opcional y BYOK: el estudiante pega su API token de Google AI Studio en el navegador. El token se guarda en `sessionStorage` por defecto y solo en `localStorage` si el usuario activa "Recordar token". No se commitea ni se incluye en exports. [CONFIG]

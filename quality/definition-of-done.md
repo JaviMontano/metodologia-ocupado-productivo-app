@@ -16,4 +16,3 @@
 4. No hay llamadas externas requeridas para operar. [CONFIG]
 5. Export Markdown y JSON funcionan. [CONFIG]
 6. Reset limpia estado local. [CONFIG]
-

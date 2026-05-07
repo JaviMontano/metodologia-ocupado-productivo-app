@@ -35,5 +35,22 @@
     "quality/acceptance-criteria.md",
     "quality/development-guidelines.md",
     "quality/qa-guidelines-bdd-tdd-atdd.md"
-  ]
+  ],
+  "workshop": {
+    "entrypoint": "workshop-bmad.html",
+    "bmadModules": [
+      "bmm",
+      "bmb",
+      "tea"
+    ],
+    "bmadTools": [
+      "antigravity",
+      "codex"
+    ],
+    "gemini": {
+      "mode": "BYOK",
+      "defaultModel": "gemini-2.5-flash",
+      "tokenStorage": "sessionStorage by default, localStorage only on explicit remember"
+    }
+  }
 }

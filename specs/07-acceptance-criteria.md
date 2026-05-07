@@ -23,4 +23,3 @@ Then Markdown y JSON contienen actividades, diagnostico, preguntas, decision y p
 Given hay datos guardados
 When el usuario confirma Cerrar y limpiar sesion
 Then `localStorage` queda limpio y la UI vuelve a cero. [CONFIG]
-

@@ -11,4 +11,3 @@ El paquete se usara para iniciar un taller y alimentar un pipeline BMAD/BMAP con
 3. Sin backend.
 4. Datos locales.
 5. Estilo MetodologIA inspirado en documento visual oscuro de referencia.
-

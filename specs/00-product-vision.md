@@ -18,4 +18,3 @@ El usuario entiende como distribuye su tiempo, identifica fugas de foco o energi
 2. Debe preservar privacidad local. [CONFIG]
 3. Debe poder subirse a Hostinger como archivos planos. [CONFIG]
 4. Debe ser suficientemente simple para estudiantes y suficientemente documentada para iniciar desarrollo posterior. [DOC]
-

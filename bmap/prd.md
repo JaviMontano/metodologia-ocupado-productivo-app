@@ -21,4 +21,3 @@ Permitir que un unico usuario complete diagnostico, debate socratico, plan seman
 3. Decision escrita.
 4. Plan semanal completo.
 5. Export realizado.
-

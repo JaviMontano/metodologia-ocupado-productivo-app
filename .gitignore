@@ -3,4 +3,11 @@ node_modules/
 dist/
 .cache/
 *.log
-
+.env
+.env.*
+!.env.example
+*.local
+bmad-input.md
+bmap-session.json
+workshop-bmad-handoff.md
+workshop-bmad-handoff.json

@@ -24,4 +24,3 @@
 ## Entidad Diagnostic
 
 Calculada, no persistida como fuente de verdad. Incluye `totalHours`, `productiveIndex`, `hamsterRisk`, `focusDebt`, `operationalLoad`, `energyNet`, `buckets`, `recommendation` y `questions`. [CONFIG]
-

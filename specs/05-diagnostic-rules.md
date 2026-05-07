@@ -23,4 +23,3 @@ Actividades con horas, impacto, energia, tipo e interrupciones. [CONFIG]
 ## Limite
 
 El diagnostico no es clinico, laboral ni psicologico; es un instrumento pedagogico para taller. [DOC]
-

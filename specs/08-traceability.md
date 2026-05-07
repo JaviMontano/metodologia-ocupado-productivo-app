@@ -15,4 +15,8 @@
 | RF-011 | `MOPStorage.clear` | TST-STOR-002 |
 | NFR-001 | Rutas relativas | TST-LINK-001 |
 | NFR-002 | Sin `fetch` ni APIs | TST-SEC-001 |
-
+| RF-012 | `workshop-bmad.html` | TST-WORKSHOP-001 |
+| RF-013 | `_bmad/_config/manifest.yaml` | TST-BMAD-001 |
+| RF-014 | `assets/gemini-workshop.js` | TST-GEMINI-001 |
+| RF-015 | `FileReader` multimodal | TST-GEMINI-002 |
+| RF-016 | Workshop handoff | TST-HANDOFF-001 |

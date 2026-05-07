@@ -16,4 +16,3 @@ La calidad se asegura con BDD para journey, TDD para motor deterministico y ATDD
 ## Evidencia requerida
 
 Resultados de comandos locales, smoke de navegador y matriz de trazabilidad actualizada. [CONFIG]
-

@@ -25,4 +25,3 @@ La extraccion queda en estado `degraded` para anexos image-only y en estado `suc
 ## Limite
 
 No se incluyen citas textuales extensas ni afirmaciones de fuentes image-only sin OCR. [CONFIG]
-

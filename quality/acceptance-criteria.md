@@ -15,4 +15,3 @@
 3. Plan: los cinco campos persisten.
 4. Export: Markdown y JSON reflejan estado actual.
 5. Limpiar sesion: la app vuelve a estado inicial.
-

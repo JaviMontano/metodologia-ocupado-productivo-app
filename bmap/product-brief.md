@@ -11,4 +11,3 @@ Persona que quiere diagnosticar como usa su tiempo, tomar una decision y disenar
 ## Valor
 
 Reduce friccion entre teoria y accion: captura, diagnostico, debate, plan y export en una sola experiencia. [DOC]
-

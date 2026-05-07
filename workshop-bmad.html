@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Workshop BMAD + Gemini | MetodologIA</title>
+  <meta name="description" content="Esta mini app es un material academico de MetodologIA. Opera sin login y guarda datos base solo en el navegador. El chatbot Gemini es opcional y solo llama la API externa cuando el usuario pega su propio API token. No apto para produccion sin validacion legal, tecnica, regulatoria y de seguridad.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body data-workshop-root>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="Ir a la app MetodologIA">
+      <img class="brand-logo" src="assets/metodologia_logo_primary.png" alt="MetodologIA">
+      <span><strong>Metodolog<span>IA</span></strong><small>De Ocupado a Productivo</small></span>
+    </a>
+    <nav class="nav"><a class="" href="index.html">App</a><a class="active" href="workshop-bmad.html">Workshop BMAD</a><a class="" href="documento-funcional.html">Documento funcional</a><a class="" href="documento-tecnico.html">Documento tecnico</a><a class="" href="prototipos/index.html">Prototipos</a><a class="" href="specs/00-product-vision.md">Specs</a><a class="" href="bmap/prd.md">BMAP/BMAD</a></nav>
+  </header>
+  <main>
+    <section class="workshop-hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow">Workshop guiado BMAD + Gemini</span>
+          <h1>Materializar la mini app con <span>BMAD</span>, Antigravity y un chatbot multimodal.</h1>
+          <p class="lead">Este taller lleva al estudiante desde preparar entorno hasta publicar y usar los artefactos del repo como insumo de desarrollo agentico. [DOC]</p>
+          <div class="hero-actions"><a class="btn primary" href="#workshop">Iniciar stepper</a><a class="btn ghost" href="docs/bmad-workshop-help.md">Ver ayuda BMAD</a><a class="btn ghost" href="https://docs.bmad-method.org/tutorials/getting-started/">Docs BMAD</a></div>
+        </div>
+        <div class="hero-panel">
+          <div class="metric"><strong>BMAD</strong><span>BMM + BMB + TEA</span></div>
+          <div class="metric"><strong>56</strong><span>skills Antigravity</span></div>
+          <div class="metric"><strong>56</strong><span>skills Codex</span></div>
+          <div class="metric"><strong>BYOK</strong><span>Gemini API token</span></div>
+        </div>
+      </div>
+    </section>
+    <section class="wrap section">
+      <aside class="notice"><strong>Uso academico y privacidad.</strong> Esta mini app es un material academico de MetodologIA. Opera sin login y guarda datos base solo en el navegador. El chatbot Gemini es opcional y solo llama la API externa cuando el usuario pega su propio API token. No apto para produccion sin validacion legal, tecnica, regulatoria y de seguridad. El API token no se exporta en BMAD/BMAP y no debe compartirse en GitHub. [CONFIG]</aside>
+    </section>
+    <section id="workshop" class="wrap section stepper">
+      <aside class="step-list" aria-label="Pasos del taller">
+        <button class="step-button active" type="button" data-step-target="0"><span>01</span>Preparar entorno</button><button class="step-button " type="button" data-step-target="1"><span>02</span>Instalar BMAD</button><button class="step-button " type="button" data-step-target="2"><span>03</span>Ejecutar bmad-help</button><button class="step-button " type="button" data-step-target="3"><span>04</span>Cargar contenido</button><button class="step-button " type="button" data-step-target="4"><span>05</span>Chatbot Gemini</button><button class="step-button " type="button" data-step-target="5"><span>06</span>Handoff BMAD</button><button class="step-button " type="button" data-step-target="6"><span>07</span>Publicar GitHub</button><button class="step-button " type="button" data-step-target="7"><span>08</span>Desplegar Hostinger</button>
+      </aside>
+      <div class="panel">
+        <article class="step-pane active" data-step-pane="0"><span class="eyebrow">Paso 01</span><h2>Preparar entorno</h2><p>Confirmar Node 20+, Git, GitHub CLI, Antigravity y repo limpio. [CONFIG]</p><pre><code>node -v
+npm -v
+gh auth status
+git status --short
+antigravity --version</code></pre></article>
+        <article class="step-pane" data-step-pane="1"><span class="eyebrow">Paso 02</span><h2>Instalar BMAD</h2><p>Instalar BMM+BMB+TEA para Antigravity y Codex. [CONFIG]</p><pre><code>npx bmad-method install --yes \
+  --modules bmm,bmb,tea \
+  --tools antigravity,codex \
+  --user-name "Javier Montaño" \
+  --communication-language es \
+  --document-output-language es \
+  --output-folder _bmad-output</code></pre></article>
+        <article class="step-pane" data-step-pane="2"><span class="eyebrow">Paso 03</span><h2>Ejecutar bmad-help</h2><p>Abrir el repo en Antigravity y pedir la ruta siguiente. [CONFIG]</p><pre><code>antigravity -n .
+bmad-help
+bmad-help Quiero materializar esta mini app desde PRD, arquitectura, epicas y stories.</code></pre></article>
+        <article class="step-pane" data-step-pane="3"><span class="eyebrow">Paso 04</span><h2>Cargar contenido del repo</h2><p>El chatbot puede cargar documentos locales del repo publicado para usarlos como contexto del taller. [CONFIG]</p><button class="btn primary" type="button" data-load-repo-context>Cargar contexto del repo</button><div class="status-line" data-repo-context-status>Contexto aun no cargado.</div><div class="file-list" data-repo-context-list></div></article>
+        <article class="step-pane" data-step-pane="4"><span class="eyebrow">Paso 05</span><h2>Conversar con chatbot Gemini</h2><p>BYOK: pega tu API token de Google AI Studio. El token vive en navegador y no se exporta. [CONFIG]</p></article>
+        <article class="step-pane" data-step-pane="5"><span class="eyebrow">Paso 06</span><h2>Generar handoff BMAD/BMAP</h2><p>Convertir conversacion, archivos cargados y diagnostico en entregables para agentes BMAD. [DOC]</p><button class="btn primary" type="button" data-generate-workshop-handoff>Generar handoff</button></article>
+        <article class="step-pane" data-step-pane="6"><span class="eyebrow">Paso 07</span><h2>Publicar GitHub</h2><p>Subir el repo publico para que estudiantes lo clonen, revisen y desplieguen. [CONFIG]</p><pre><code>gh repo create JaviMontano/metodologia-ocupado-productivo-app --public --source . --remote origin --push</code></pre></article>
+        <article class="step-pane" data-step-pane="7"><span class="eyebrow">Paso 08</span><h2>Desplegar Hostinger</h2><p>Subir todos los archivos y carpetas preservando rutas relativas. [SUPUESTO]</p><pre><code>public_html/
+  index.html
+  workshop-bmad.html
+  assets/
+  data/
+  docs/
+  prototipos/
+  specs/
+  quality/
+  bmap/</code></pre></article>
+      </div>
+    </section>
+    <section class="wrap section two-col">
+      <div>
+        <span class="eyebrow">Comandos copiables</span>
+        <h2>Help y flujo BMAD del taller</h2>
+        <p>Usaremos el contenido de este repo como materia prima: documento funcional, tecnico, specs, quality, BMAP/BMAD y exports de la mini app. [DOC]</p>
+      </div>
+      <div class="command-grid">
+        <div class="command-card"><code>bmad-help</code><p>Guia inteligente: detecta estado y recomienda el siguiente workflow.</p></div><div class="command-card"><code>bmad-create-prd</code><p>Crea PRD desde el producto y el contexto del taller.</p></div><div class="command-card"><code>bmad-create-architecture</code><p>Define arquitectura a partir del PRD.</p></div><div class="command-card"><code>bmad-create-epics-and-stories</code><p>Rompe PRD+arquitectura en epicas y stories.</p></div><div class="command-card"><code>bmad-check-implementation-readiness</code><p>Valida cohesion antes de implementar.</p></div><div class="command-card"><code>bmad-sprint-planning</code><p>Inicializa sprint y seguimiento.</p></div><div class="command-card"><code>bmad-create-story</code><p>Crea la story lista para dev.</p></div><div class="command-card"><code>bmad-dev-story</code><p>Implementa story con agente dev.</p></div><div class="command-card"><code>bmad-code-review</code><p>Revisa calidad de la implementacion.</p></div>
+      </div>
+    </section>
+    <section class="wrap section chat-shell">
+      <div class="panel chat-config">
+        <span class="eyebrow">Chatbot multimodal</span>
+        <h2>Gemini API token</h2>
+        <label>API token<input data-gemini-token type="password" autocomplete="off" placeholder="Pega tu API token de Google AI Studio"></label>
+        <label><input data-remember-token type="checkbox"> Recordar token en este navegador</label>
+        <label>Modelo<input data-gemini-model value="gemini-2.5-flash"></label>
+        <label>Archivos multimodales<input data-workshop-files type="file" multiple accept=".txt,.md,.json,.html,.pdf,image/png,image/jpeg,image/webp"></label>
+        <div class="file-list" data-file-list><p>No hay archivos cargados.</p></div>
+        <p class="copy-note">No pegues tokens en chats, issues, commits ni exports. Para publicar en GitHub, confirma que no exista ningun patron de token Google en el repo. [CONFIG]</p>
+      </div>
+      <div class="panel chat-panel">
+        <h2>Asistente del taller</h2>
+        <div class="chat-log" data-chat-log><div class="chat-msg assistant">Pega tu token, carga contexto o archivos, y pregunta como llevar este repo por BMAD.</div></div>
+        <label>Pregunta<textarea data-chat-input rows="4" placeholder="Ej: Con estos specs, dime que workflow BMAD ejecutar primero y que prompt usar en Antigravity."></textarea></label>
+        <div class="toolbar"><button class="btn primary" type="button" data-send-chat>Enviar a Gemini</button><button class="btn ghost" type="button" data-clear-chat>Limpiar chat</button></div>
+      </div>
+    </section>
+    <section class="wrap section">
+      <div class="section-head"><span class="eyebrow">Handoff</span><h2>Salida para pipeline BMAD/BMAP</h2><p>Genera artefactos locales sin incluir token. [CONFIG]</p></div>
+      <div class="handoff-grid">
+        <label>Workshop handoff Markdown<textarea data-workshop-handoff-md rows="14" readonly></textarea></label>
+        <label>Workshop handoff JSON<textarea data-workshop-handoff-json rows="14" readonly></textarea></label>
+      </div>
+      <div class="toolbar"><button class="btn ghost" type="button" data-download-workshop-md>Descargar workshop-bmad-handoff.md</button><button class="btn ghost" type="button" data-download-workshop-json>Descargar workshop-bmad-handoff.json</button></div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <div><strong>MetodologIA</strong><p>Esta mini app es un material academico de MetodologIA. Opera sin login y guarda datos base solo en el navegador. El chatbot Gemini es opcional y solo llama la API externa cuando el usuario pega su propio API token. No apto para produccion sin validacion legal, tecnica, regulatoria y de seguridad.</p></div>
+      <div><strong>BMAD ready</strong><p>Este repo incluye BMAD instalado para Antigravity y Codex, mas un taller guiado para materializar la app.</p></div>
+    </div>
+  </footer>
+  <script src="assets/storage.js"></script>
+  <script src="assets/diagnostic-engine.js"></script>
+  <script src="assets/exporters.js"></script>
+  <script src="assets/app.js"></script>
+  <script src="assets/gemini-workshop.js"></script>
+</body>
+</html>

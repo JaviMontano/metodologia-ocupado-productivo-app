@@ -10,11 +10,11 @@
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="index.html" aria-label="Ir a la app">
-      <span class="brand-mark">M</span>
+    <a class="brand" href="index.html" aria-label="Ir a la app MetodologIA">
+      <img class="brand-logo" src="assets/metodologia_logo_primary.png" alt="MetodologIA">
       <span><strong>Metodolog<span>IA</span></strong><small>De Ocupado a Productivo</small></span>
     </a>
-    <nav class="nav"><a class="" href="index.html">App</a><a class="active" href="documento-funcional.html">Documento funcional</a><a class="" href="documento-tecnico.html">Documento tecnico</a><a class="" href="prototipos/index.html">Prototipos</a><a class="" href="specs/00-product-vision.md">Specs</a><a class="" href="bmap/prd.md">BMAP/BMAD</a></nav>
+    <nav class="nav"><a class="" href="index.html">App</a><a class="" href="workshop-bmad.html">Workshop BMAD</a><a class="active" href="documento-funcional.html">Documento funcional</a><a class="" href="documento-tecnico.html">Documento tecnico</a><a class="" href="prototipos/index.html">Prototipos</a><a class="" href="specs/00-product-vision.md">Specs</a><a class="" href="bmap/prd.md">BMAP/BMAD</a></nav>
   </header>
   <main class="wrap doc">
 
@@ -32,6 +32,8 @@
     <section class="doc-section"><h2>Reglas funcionales</h2><table class="activity-table"><thead><tr><th>ID</th><th>Regla</th><th>Resultado observable</th></tr></thead><tbody><tr><td>RF-001</td><td>La app opera sin login.</td><td><code>index.html</code> abre y permite usar todas las estaciones. [CONFIG]</td></tr><tr><td>RF-002</td><td>Los datos se guardan solo en navegador.</td><td>El estado persiste en <code>localStorage</code> y no hay llamadas externas. [CONFIG]</td></tr><tr><td>RF-003</td><td>El diagnostico es deterministico.</td><td>La misma entrada produce el mismo score y preguntas. [CONFIG]</td></tr><tr><td>RF-004</td><td>La exportacion es portable.</td><td>El usuario obtiene Markdown y JSON validos. [CONFIG]</td></tr><tr><td>RF-005</td><td>La sesion puede reiniciarse.</td><td>El boton de limpieza deja la app en estado inicial. [CONFIG]</td></tr></tbody></table></section>
     <section class="doc-section"><h2>Uso en aula</h2><p>El facilitador puede pedir que cada estudiante capture una semana real o use el demo para aprender el flujo. La conversacion se centra en decisiones: que eliminar, que agrupar, que proteger y que evidencia confirma avance. [DOC]</p></section>
     <section class="doc-section"><h2>Criterio de terminado funcional</h2><p>El paquete esta terminado cuando la app corre sin login, guarda y limpia sesion, exporta BMAD/BMAP, documenta el journey unico, enlaza documentos y prototipos, y puede subirse completo a Hostinger como archivos estaticos. [CONFIG]</p></section>
+
+    <section class="doc-section"><h2>Workshop BMAD + Gemini</h2><p>El paquete incluye <code>workshop-bmad.html</code> como experiencia guiada para materializar la app con BMAD, Antigravity y Codex. El chatbot multimodal es opcional y usa API token propio del usuario; el resto del flujo sigue disponible sin token. [CONFIG]</p></section>
   </main>
   <footer class="footer">
     <div class="wrap footer-grid">

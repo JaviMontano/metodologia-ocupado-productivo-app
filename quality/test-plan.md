@@ -31,4 +31,12 @@ Validar que la mini app estatica cumple el journey unico, no requiere login, no 
 ## Criterio de salida
 
 Todas las pruebas criticas pasan: smoke, links, JS, privacidad local, persistencia, export y reset. [CONFIG]
+## Pruebas Workshop BMAD + Gemini
 
+| ID | Tipo | Objetivo | Evidencia |
+| --- | --- | --- | --- |
+| TST-WORKSHOP-001 | UI | Abrir `workshop-bmad.html` y navegar stepper | Pasos visibles y activos |
+| TST-BMAD-001 | Instalacion | Validar `bmm`, `bmb`, `tea`, `.agent/skills`, `.agents/skills` | Manifest y conteo de skills |
+| TST-GEMINI-001 | Seguridad | Sin token no llama API; con token mock arma payload | Sin secretos en repo |
+| TST-GEMINI-002 | Multimodal | Cargar txt/md/json/html/pdf/png/jpg/webp | Partes texto e inline_data |
+| TST-HANDOFF-001 | Export | Generar handoff MD/JSON | No contiene API token |

@@ -26,4 +26,12 @@ Existe un unico actor: usuario diagnostico de tiempo. Puede ser estudiante, prof
 2. La misma entrada produce el mismo diagnostico. [CONFIG]
 3. La exportacion refleja el estado visible de la sesion. [CONFIG]
 4. El reset no debe borrar archivos del repo, solo estado del navegador. [CONFIG]
+## Workshop BMAD + Gemini
 
+| ID | Requisito | Criterio observable | Prueba |
+| --- | --- | --- | --- |
+| RF-012 | Abrir workshop guiado | `workshop-bmad.html` aparece en la navegacion | TST-WORKSHOP-001 |
+| RF-013 | Instalar BMAD | `_bmad/_config/manifest.yaml` contiene `bmm`, `bmb`, `tea` | TST-BMAD-001 |
+| RF-014 | Usar Gemini BYOK | Sin token muestra bloqueo y con token arma payload multimodal | TST-GEMINI-001 |
+| RF-015 | Cargar archivos multimodales | Texto, PDF e imagenes quedan listos como partes Gemini | TST-GEMINI-002 |
+| RF-016 | Generar handoff workshop | Markdown y JSON se generan sin incluir token | TST-HANDOFF-001 |

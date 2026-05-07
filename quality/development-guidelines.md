@@ -16,4 +16,3 @@ Antes de tocar reglas de diagnostico, escribir casos de entrada/salida para scor
 ## Revision
 
 Todo cambio debe actualizar traceability si toca requisitos, pruebas o contratos exportados. [DOC]
-

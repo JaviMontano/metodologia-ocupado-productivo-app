@@ -29,4 +29,3 @@ Criterios: archivos generados localmente y parseables.
 Historia: como usuario quiero limpiar sesion para iniciar otro diagnostico.
 
 Criterios: estado local borrado y UI reiniciada.
-

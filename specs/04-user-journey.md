@@ -22,4 +22,3 @@ Cualquier persona que quiere diagnosticar su uso del tiempo y transformar su sem
 Given una persona abre la app sin login
 When registra actividades y genera export
 Then obtiene diagnostico, preguntas, plan semanal, Markdown y JSON sin enviar datos a servidores. [CONFIG]
-

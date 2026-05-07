@@ -20,4 +20,3 @@ Cualquier persona que quiere entender como usa su tiempo, pasar de ocupado a pro
 ## Criterio de exito
 
 El usuario termina con una decision, un plan semanal y un paquete exportable que puede entregar a un pipeline agentico.
-

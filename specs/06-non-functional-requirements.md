@@ -10,4 +10,3 @@
 | NFR-006 | Mantenibilidad | JS separado por storage, motor, export y UI |
 | NFR-007 | Observabilidad pedagogica | Resultados y export hacen visible el razonamiento |
 | NFR-008 | Degradacion | Si no hay datos, la app muestra estado vacio util |
-

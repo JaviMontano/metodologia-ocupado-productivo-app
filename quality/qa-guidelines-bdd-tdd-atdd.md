@@ -20,4 +20,3 @@ Convertir criterios de aceptacion en pruebas de navegador: el usuario obtiene re
 4. E2E: journey completo con demo.
 5. Accesibilidad: navegacion, labels y estructura semantica.
 6. Seguridad basica: sin llamadas externas y sin persistencia remota.
-
