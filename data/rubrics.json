@@ -1,0 +1,20 @@
+{
+  "impact": {
+    "1": "No mueve prioridades",
+    "3": "Mantiene operacion",
+    "5": "Mueve una meta clave"
+  },
+  "energy": {
+    "0": "Neutra",
+    "5": "Energiza y clarifica",
+    "-5": "Drena intensamente"
+  },
+  "types": [
+    "creacion",
+    "estrategico",
+    "operativo",
+    "mantenimiento",
+    "comunicacion",
+    "aprendizaje"
+  ]
+}

@@ -1,0 +1,27 @@
+# De Ocupado a Productivo - Mini App MetodologIA
+
+Repo estatico para ejecutar un taller practico sobre diagnostico del uso del tiempo. [DOC]
+
+## Entrada
+
+Abre `index.html` localmente o sube el repo completo a Hostinger manteniendo las carpetas. [CONFIG]
+
+## Entregables
+
+1. `index.html`: app stand alone con diagnostico, debate socratico, mapa de tiempo, plan semanal, export BMAD/BMAP y limpieza de sesion.
+2. `documento-funcional.html`: documento funcional independiente.
+3. `documento-tecnico.html`: documento tecnico independiente.
+4. `journeys/usuario-diagnostico-tiempo.md`: journey unico del usuario.
+5. `prototipos/`: prototipos navegables del mismo journey.
+6. `specs/`: specs SDD.
+7. `quality/`: plan de pruebas, DoD, criterios y guidelines BDD/TDD/ATDD.
+8. `bmap/`: briefs, PRD, arquitectura, epicas, QA strategy y handoff JSON.
+
+## Privacidad
+
+Esta mini app es un material academico de MetodologIA. Opera sin login, guarda datos solo en el navegador y no envia informacion a servidores. El diagnostico es orientativo y no sustituye acompanamiento profesional, medico, psicologico, legal ni laboral.
+
+## Despliegue manual
+
+Sube todos los archivos y carpetas del repo a `public_html` o a una subcarpeta de Hostinger. No hay build, backend, login, base de datos ni variables de entorno. [CONFIG]
+

@@ -1,0 +1,39 @@
+{
+  "product": "De Ocupado a Productivo",
+  "brand": "MetodologIA",
+  "status": "static-ready",
+  "user": "persona que quiere diagnosticar su tiempo",
+  "runtime": "static-html-css-js",
+  "constraints": [
+    "no-login",
+    "no-backend",
+    "local-storage-only",
+    "hostinger-manual-upload"
+  ],
+  "outputs": [
+    "bmad-input.md",
+    "bmap-session.json"
+  ],
+  "journeys": [
+    "journeys/usuario-diagnostico-tiempo.md",
+    "prototipos/01-journey-usuario.html"
+  ],
+  "specs": [
+    "specs/00-product-vision.md",
+    "specs/01-functional-spec.md",
+    "specs/02-technical-spec.md",
+    "specs/03-data-model.md",
+    "specs/04-user-journey.md",
+    "specs/05-diagnostic-rules.md",
+    "specs/06-non-functional-requirements.md",
+    "specs/07-acceptance-criteria.md",
+    "specs/08-traceability.md"
+  ],
+  "quality": [
+    "quality/test-plan.md",
+    "quality/definition-of-done.md",
+    "quality/acceptance-criteria.md",
+    "quality/development-guidelines.md",
+    "quality/qa-guidelines-bdd-tdd-atdd.md"
+  ]
+}

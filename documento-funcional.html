@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Documento funcional | MetodologIA</title>
+  <meta name="description" content="Esta mini app es un material academico de MetodologIA. Opera sin login, guarda datos solo en el navegador y no envia informacion a servidores. El diagnostico es orientativo y no sustituye acompanamiento profesional, medico, psicologico, legal ni laboral.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="Ir a la app">
+      <span class="brand-mark">M</span>
+      <span><strong>Metodolog<span>IA</span></strong><small>De Ocupado a Productivo</small></span>
+    </a>
+    <nav class="nav"><a class="" href="index.html">App</a><a class="active" href="documento-funcional.html">Documento funcional</a><a class="" href="documento-tecnico.html">Documento tecnico</a><a class="" href="prototipos/index.html">Prototipos</a><a class="" href="specs/00-product-vision.md">Specs</a><a class="" href="bmap/prd.md">BMAP/BMAD</a></nav>
+  </header>
+  <main class="wrap doc">
+
+    <header class="doc-hero">
+      <span class="eyebrow">Documento funcional independiente</span>
+      <h1>Mini app de diagnostico para pasar de ocupado a productivo.</h1>
+      <p class="lead">Define el problema, el usuario unico, la experiencia de taller, las reglas funcionales, los entregables exportables y los criterios de terminado. [DOC]</p>
+      <aside class="notice"><strong>Privacidad local.</strong> Esta mini app es un material academico de MetodologIA. Opera sin login, guarda datos solo en el navegador y no envia informacion a servidores. El diagnostico es orientativo y no sustituye acompanamiento profesional, medico, psicologico, legal ni laboral.</aside>
+    </header>
+    <section class="doc-section"><h2>Proposito</h2><p>La app convierte el workshop De Ocupado a Productivo en una practica navegable: capturar actividades, leer patrones, debatir socraticamente y salir con una semana disenada por intencion, no por intensidad. [DOC]</p></section>
+    <section class="doc-section"><h2>Usuario unico</h2><p>El usuario es cualquier estudiante, profesional o participante que quiere diagnosticar como usa su tiempo. No existen roles secundarios, permisos, cuentas, aprobaciones ni perfiles de administrador. [CONFIG]</p></section>
+    <section class="doc-section"><h2>Alcance funcional</h2><div class="spec-grid"><div><strong>Incluye</strong><p>Captura semanal, clasificacion, diagnostico deterministico, preguntas socraticas, plan semanal, export BMAD/BMAP y limpieza de sesion. [DOC]</p></div><div><strong>No incluye</strong><p>No sube datos personales, no crea usuarios, no sincroniza nube, no llama IA remota y no despliega a Hostinger desde la app. [CONFIG]</p></div><div><strong>Uso esperado</strong><p>Abrir localmente o publicar como sitio estatico. En aula, cada estudiante puede correr su propia copia sin configuracion. [SUPUESTO]</p></div></div></section>
+    <section class="doc-section"><h2>Journey lineal</h2><ol><li>La persona abre <code>index.html</code> sin login. [CONFIG]</li><li>Lee el proposito y el aviso de privacidad local. [DOC]</li><li>Ingresa o pega actividades de la semana. [DOC]</li><li>Clasifica horas, impacto, energia, tipo de trabajo e interrupciones. [DOC]</li><li>Recibe diagnostico de ocupacion versus productividad. [CONFIG]</li><li>Entra al debate socratico guiado. [DOC]</li><li>Disena una semana de alto impacto. [DOC]</li><li>Exporta Markdown y JSON para BMAD/BMAP. [CONFIG]</li><li>Limpia sesion con un boton visible. [CONFIG]</li><li>Si esta en taller tecnico, sube el repo completo a Hostinger sin build. [SUPUESTO]</li></ol></section>
+    <section class="doc-section"><h2>Estaciones de la app</h2><div class="spec-grid"><div><strong>Diagnostico</strong><p>Registra actividades y calcula horas totales, indice productivo, rueda de hamster, deuda de foco y energia neta. [CONFIG]</p></div><div><strong>Debate socratico</strong><p>Entrega preguntas segun patrones detectados para mover al usuario de justificacion a decision. [DOC]</p></div><div><strong>Mapa de tiempo</strong><p>Distribuye actividades en cuadrantes impacto/energia para detectar fugas y bloques de alto valor. [CONFIG]</p></div><div><strong>Plan semanal</strong><p>Documenta prioridad unica, deep work, batch operativo, buffer y no deliberado. [DOC]</p></div><div><strong>Export BMAD</strong><p>Genera <code>bmad-input.md</code> y <code>bmap-session.json</code> desde el estado local de la sesion. [CONFIG]</p></div><div><strong>Limpiar sesion</strong><p>Borra la clave local de la app, limpia <code>sessionStorage</code> y recarga el flujo desde cero. [CONFIG]</p></div></div></section>
+    <section class="doc-section"><h2>Reglas funcionales</h2><table class="activity-table"><thead><tr><th>ID</th><th>Regla</th><th>Resultado observable</th></tr></thead><tbody><tr><td>RF-001</td><td>La app opera sin login.</td><td><code>index.html</code> abre y permite usar todas las estaciones. [CONFIG]</td></tr><tr><td>RF-002</td><td>Los datos se guardan solo en navegador.</td><td>El estado persiste en <code>localStorage</code> y no hay llamadas externas. [CONFIG]</td></tr><tr><td>RF-003</td><td>El diagnostico es deterministico.</td><td>La misma entrada produce el mismo score y preguntas. [CONFIG]</td></tr><tr><td>RF-004</td><td>La exportacion es portable.</td><td>El usuario obtiene Markdown y JSON validos. [CONFIG]</td></tr><tr><td>RF-005</td><td>La sesion puede reiniciarse.</td><td>El boton de limpieza deja la app en estado inicial. [CONFIG]</td></tr></tbody></table></section>
+    <section class="doc-section"><h2>Uso en aula</h2><p>El facilitador puede pedir que cada estudiante capture una semana real o use el demo para aprender el flujo. La conversacion se centra en decisiones: que eliminar, que agrupar, que proteger y que evidencia confirma avance. [DOC]</p></section>
+    <section class="doc-section"><h2>Criterio de terminado funcional</h2><p>El paquete esta terminado cuando la app corre sin login, guarda y limpia sesion, exporta BMAD/BMAP, documenta el journey unico, enlaza documentos y prototipos, y puede subirse completo a Hostinger como archivos estaticos. [CONFIG]</p></section>
+  </main>
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <div><strong>MetodologIA</strong><p>Esta mini app es un material academico de MetodologIA. Opera sin login, guarda datos solo en el navegador y no envia informacion a servidores. El diagnostico es orientativo y no sustituye acompanamiento profesional, medico, psicologico, legal ni laboral.</p></div>
+      <div><strong>Hostinger ready</strong><p>Sube este repo completo como archivos estaticos. No hay build, backend, login ni base de datos.</p></div>
+    </div>
+  </footer>
+  <script src="assets/storage.js"></script>
+  <script src="assets/diagnostic-engine.js"></script>
+  <script src="assets/exporters.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

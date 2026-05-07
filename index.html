@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>De Ocupado a Productivo | MetodologIA</title>
+  <meta name="description" content="Esta mini app es un material academico de MetodologIA. Opera sin login, guarda datos solo en el navegador y no envia informacion a servidores. El diagnostico es orientativo y no sustituye acompanamiento profesional, medico, psicologico, legal ni laboral.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="Ir a la app">
+      <span class="brand-mark">M</span>
+      <span><strong>Metodolog<span>IA</span></strong><small>De Ocupado a Productivo</small></span>
+    </a>
+    <nav class="nav"><a class="active" href="index.html">App</a><a class="" href="documento-funcional.html">Documento funcional</a><a class="" href="documento-tecnico.html">Documento tecnico</a><a class="" href="prototipos/index.html">Prototipos</a><a class="" href="specs/00-product-vision.md">Specs</a><a class="" href="bmap/prd.md">BMAP/BMAD</a></nav>
+  </header>
+  <main>
+    <section class="hero tool-hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="eyebrow">Mini app stand alone para taller</span>
+          <h1>Diagnostica como usas tu tiempo y pasa de <span>ocupado</span> a productivo.</h1>
+          <p class="lead">Una experiencia practica para capturar actividades, detectar fugas de energia, debatir socraticamente tus patrones y salir con una semana de alto impacto lista para ejecutar.</p>
+          <div class="hero-actions"><a class="btn primary" href="#diagnostico">Iniciar diagnostico</a><a class="btn ghost" href="documento-funcional.html">Ver documento funcional</a><a class="btn ghost" href="documento-tecnico.html">Ver documento tecnico</a></div>
+        </div>
+        <div class="hero-panel">
+          <div class="metric"><strong data-total-hours>0h</strong><span>capturadas</span></div>
+          <div class="metric"><strong data-score>--</strong><span>indice productivo</span></div>
+          <div class="metric"><strong data-risk>--</strong><span>riesgo rueda de hamster</span></div>
+          <div class="metric"><strong data-storage-state>Local</strong><span>sin login</span></div>
+        </div>
+      </div>
+    </section>
+    <section class="wrap section">
+      <aside class="notice"><strong>Privacidad local.</strong> Esta mini app es un material academico de MetodologIA. Opera sin login, guarda datos solo en el navegador y no envia informacion a servidores. El diagnostico es orientativo y no sustituye acompanamiento profesional, medico, psicologico, legal ni laboral.</aside>
+      <div class="station-grid"><a class="station-card" href="#diagnostico"><span>01</span><strong>Diagnostico</strong><p>Captura actividades, energia, impacto e interrupciones para distinguir ocupacion de productividad.</p></a><a class="station-card" href="#socratico"><span>02</span><strong>Debate socratico</strong><p>Convierte el resultado en preguntas que obligan a decidir, no a justificar el cansancio.</p></a><a class="station-card" href="#mapa"><span>03</span><strong>Mapa de tiempo</strong><p>Visualiza cuadrantes, fugas y relacion entre foco, energia e impacto.</p></a><a class="station-card" href="#plan"><span>04</span><strong>Plan semanal</strong><p>Disena una semana de alto impacto con prioridad unica, deep work, batching y buffers.</p></a><a class="station-card" href="#exportar"><span>05</span><strong>Exportar BMAD</strong><p>Genera Markdown y JSON para usar como input de un pipeline agentico BMAD/BMAP.</p></a><a class="station-card" href="#limpiar"><span>06</span><strong>Limpiar sesion</strong><p>Borra localStorage/sessionStorage y reinicia el flujo para otro estudiante o intento.</p></a></div>
+    </section>
+    <section id="diagnostico" class="wrap section app-shell" data-app-root>
+      <div class="section-head">
+        <span class="eyebrow">Estacion 01</span>
+        <h2>Diagnostico de uso del tiempo</h2>
+        <p>Agrega actividades de tu ultima semana. Evalua impacto, energia e interrupciones. La app calcula un diagnostico deterministico en tu navegador.</p>
+      </div>
+      <div class="toolbar">
+        <button class="btn primary" type="button" data-add-activity>Agregar actividad</button>
+        <button class="btn ghost" type="button" data-load-demo>Cargar demo</button>
+        <button class="btn danger" type="button" data-clear-session>Cerrar y limpiar sesion</button>
+      </div>
+      <div class="activity-table-wrap">
+        <table class="activity-table">
+          <thead><tr><th>Actividad</th><th>Horas</th><th>Impacto</th><th>Energia</th><th>Tipo</th><th>Interrupciones</th><th></th></tr></thead>
+          <tbody data-activities></tbody>
+        </table>
+      </div>
+      <div class="results-grid" id="mapa">
+        <article class="result-card"><span>Indice productivo</span><strong data-result-productive>--</strong><p data-result-productive-copy>Agrega actividades para calcular.</p></article>
+        <article class="result-card"><span>Rueda de hamster</span><strong data-result-hamster>--</strong><p data-result-hamster-copy>Detecta bajo impacto con baja energia.</p></article>
+        <article class="result-card"><span>Deuda de foco</span><strong data-result-focus>--</strong><p data-result-focus-copy>Interrupciones y cambio de contexto.</p></article>
+        <article class="result-card"><span>Energia neta</span><strong data-result-energy>--</strong><p data-result-energy-copy>Balance emocional/cognitivo semanal.</p></article>
+      </div>
+      <div class="quadrants" data-quadrants></div>
+    </section>
+    <section id="socratico" class="wrap section two-col">
+      <div>
+        <span class="eyebrow">Estacion 02</span>
+        <h2>Debate socratico guiado</h2>
+        <p>La app no te regana. Te hace preguntas para que conviertas el diagnostico en decisiones.</p>
+      </div>
+      <div class="panel">
+        <div data-socratic-questions class="question-list"></div>
+        <label>Decision que tomo despues de debatir conmigo mismo
+          <textarea data-decision rows="4" placeholder="Ej: Esta semana voy a proteger 90 minutos el martes y jueves para avanzar en mi prioridad unica."></textarea>
+        </label>
+      </div>
+    </section>
+    <section id="plan" class="wrap section two-col">
+      <div>
+        <span class="eyebrow">Estacion 03</span>
+        <h2>Plan semanal de alto impacto</h2>
+        <p>Convierte la teoria en un diseno concreto: prioridad unica, bloque profundo, batching, buffer y un no deliberado.</p>
+      </div>
+      <div class="panel plan-form">
+        <label>Prioridad unica de la semana<input data-plan-priority placeholder="La meta que haria que la semana valga la pena"></label>
+        <label>Bloque de deep work<input data-plan-deep placeholder="Martes 8:00-10:00, entregable X"></label>
+        <label>Batch operativo<input data-plan-batch placeholder="Correos y administracion, lunes y jueves 16:00"></label>
+        <label>Buffer o pausa estrategica<input data-plan-buffer placeholder="15 min despues de reuniones clave"></label>
+        <label>No deliberado<input data-plan-no placeholder="No aceptar reuniones sin agenda"></label>
+      </div>
+    </section>
+    <section id="exportar" class="wrap section two-col">
+      <div>
+        <span class="eyebrow">Estacion 04</span>
+        <h2>Exportar para BMAD/BMAP</h2>
+        <p>Genera insumos para un flujo agentico: Markdown para lectura humana y JSON para automatizacion.</p>
+        <div class="toolbar"><button class="btn primary" type="button" data-generate-export>Generar export</button><button class="btn ghost" type="button" data-download-md>Descargar MD</button><button class="btn ghost" type="button" data-download-json>Descargar JSON</button></div>
+      </div>
+      <div class="panel">
+        <label>Export Markdown<textarea data-export-md rows="12" readonly></textarea></label>
+        <label>Export JSON<textarea data-export-json rows="8" readonly></textarea></label>
+      </div>
+    </section>
+    <section id="limpiar" class="wrap section closing-panel">
+      <h2>Cerrar o limpiar para reiniciar sesion</h2>
+      <p>Usa este boton cuando un estudiante termine, cuando quieras iniciar otro diagnostico o antes de subir una copia limpia a Hostinger.</p>
+      <button class="btn danger" type="button" data-clear-session>Cerrar y limpiar sesion</button>
+    </section>
+    <section class="wrap section">
+      <div class="section-head"><span class="eyebrow">Fuentes sintetizadas</span><h2>De teoria a practica</h2></div>
+      <div class="source-grid"><div class="mini-card"><strong>Playbook</strong><p>Aporta los tres juegos: entender el uso del tiempo, planificar para lograr y preparar una semana diferente. Tambien aporta la idea central de intencion sobre intensidad.</p></div><div class="mini-card"><strong>Fieldbook</strong><p>Aporta protocolos tacticos: planificacion estructurada de retos, auditoria semanal de foco y P.A.R. para adoptar habitos.</p></div><div class="mini-card"><strong>Masterclass</strong><p>Aporta el cambio de paradigma: dejar de ocupar la agenda y convertirse en arquitecto de la vida propia, con foco en impacto y energia.</p></div><div class="mini-card"><strong>LLM5</strong><p>Aporta cuadrantes impacto/energia, diagnostico de foco y energia, reencuadre y diseno de apalancamiento con IA.</p></div><div class="mini-card"><strong>LLM6 y bonos</strong><p>Aportan calidad del entregable: claridad, impacto, deleite, intencion como sistema y estandar WOW. Los PDFs image-only se usan como referencia visual/conceptual salvo OCR posterior.</p></div></div>
+    </section>
+  </main>
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <div><strong>MetodologIA</strong><p>Esta mini app es un material academico de MetodologIA. Opera sin login, guarda datos solo en el navegador y no envia informacion a servidores. El diagnostico es orientativo y no sustituye acompanamiento profesional, medico, psicologico, legal ni laboral.</p></div>
+      <div><strong>Hostinger ready</strong><p>Sube este repo completo como archivos estaticos. No hay build, backend, login ni base de datos.</p></div>
+    </div>
+  </footer>
+  <script src="assets/storage.js"></script>
+  <script src="assets/diagnostic-engine.js"></script>
+  <script src="assets/exporters.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

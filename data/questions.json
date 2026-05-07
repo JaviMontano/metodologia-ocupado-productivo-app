@@ -1,0 +1,14 @@
+{
+  "default": [
+    "Que actividad te mantuvo ocupado pero no te acerco a tu prioridad?",
+    "Que no deliberado liberaria mas foco esta semana?",
+    "Que bloque de 90 minutos protegeria mejor tu avance?",
+    "Que evidencia confirmara que pasaste de ocupado a productivo?"
+  ],
+  "highHamsterRisk": [
+    "Que tarea de bajo impacto y baja energia puedes eliminar, delegar o agrupar?"
+  ],
+  "highFocusDebt": [
+    "Que interrupcion estas tratando como inevitable aunque puedes redisenarla?"
+  ]
+}

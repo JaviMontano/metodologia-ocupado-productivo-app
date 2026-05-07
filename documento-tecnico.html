@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Documento tecnico | MetodologIA</title>
+  <meta name="description" content="Esta mini app es un material academico de MetodologIA. Opera sin login, guarda datos solo en el navegador y no envia informacion a servidores. El diagnostico es orientativo y no sustituye acompanamiento profesional, medico, psicologico, legal ni laboral.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html" aria-label="Ir a la app">
+      <span class="brand-mark">M</span>
+      <span><strong>Metodolog<span>IA</span></strong><small>De Ocupado a Productivo</small></span>
+    </a>
+    <nav class="nav"><a class="" href="index.html">App</a><a class="" href="documento-funcional.html">Documento funcional</a><a class="active" href="documento-tecnico.html">Documento tecnico</a><a class="" href="prototipos/index.html">Prototipos</a><a class="" href="specs/00-product-vision.md">Specs</a><a class="" href="bmap/prd.md">BMAP/BMAD</a></nav>
+  </header>
+  <main class="wrap doc">
+
+    <header class="doc-hero">
+      <span class="eyebrow">Documento tecnico independiente</span>
+      <h1>Arquitectura estatica, sin backend, lista para Hostinger.</h1>
+      <p class="lead">Describe runtime, estructura de archivos, modelo de datos, motor de diagnostico, almacenamiento, exportadores, reset y validacion. [CONFIG]</p>
+      <aside class="notice"><strong>Privacidad local.</strong> Esta mini app es un material academico de MetodologIA. Opera sin login, guarda datos solo en el navegador y no envia informacion a servidores. El diagnostico es orientativo y no sustituye acompanamiento profesional, medico, psicologico, legal ni laboral.</aside>
+    </header>
+    <section class="doc-section"><h2>Decision de arquitectura</h2><p>La solucion es una aplicacion estatica de navegador. Usa HTML, CSS, JavaScript plano y JSON local; no requiere Node, framework, transpilacion, servidor, base de datos, credenciales ni API externa para operar. [CONFIG]</p></section>
+    <section class="doc-section"><h2>Estructura runtime</h2><pre><code>index.html
+documento-funcional.html
+documento-tecnico.html
+prototipos/
+journeys/
+assets/styles.css
+assets/storage.js
+assets/diagnostic-engine.js
+assets/exporters.js
+assets/app.js
+data/questions.json
+data/rubrics.json
+specs/
+quality/
+bmap/</code></pre></section>
+    <section class="doc-section"><h2>Modelo de datos</h2><pre><code>{
+  "activities": [
+    {
+      "name": "Diseno de propuesta clave",
+      "hours": 3,
+      "impact": 5,
+      "energy": 3,
+      "type": "creacion",
+      "interruptions": false
+    }
+  ],
+  "decision": "Texto libre del debate socratico",
+  "plan": {
+    "priority": "",
+    "deep": "",
+    "batch": "",
+    "buffer": "",
+    "no": ""
+  },
+  "updatedAt": "ISO-8601"
+}</code></pre></section>
+    <section class="doc-section"><h2>Persistencia</h2><p><code>assets/storage.js</code> encapsula lectura, escritura y limpieza. La clave de almacenamiento es <code>metodologia.ocupadoProductivo.session.v1</code>. La app nunca necesita cookies ni sesion remota. [CONFIG]</p></section>
+    <section class="doc-section"><h2>Motor de diagnostico</h2><p><code>assets/diagnostic-engine.js</code> calcula horas totales, cuadrantes impacto/energia, indice productivo, riesgo de rueda de hamster, deuda de foco, carga operativa y energia neta. El algoritmo pondera impacto, energia e interrupciones para producir una orientacion pedagogica, no una verdad clinica o laboral. [CONFIG]</p></section>
+    <section class="doc-section"><h2>Exportadores</h2><p><code>assets/exporters.js</code> crea dos contratos de salida: <code>bmad-input.md</code> para lectura humana y <code>bmap-session.json</code> para pipelines agenticos. Ambos se generan localmente con <code>Blob</code> y descarga del navegador. [CONFIG]</p></section>
+    <section class="doc-section"><h2>Compatibilidad Hostinger</h2><p>El repo completo puede subirse por File Manager o FTP manteniendo rutas relativas. El archivo de entrada debe quedar como <code>public_html/index.html</code> o dentro de una subcarpeta preservando <code>assets/</code>, <code>data/</code>, <code>prototipos/</code>, <code>specs/</code>, <code>quality/</code> y <code>bmap/</code>. [CONFIG]</p></section>
+    <section class="doc-section"><h2>Controles de seguridad y privacidad</h2><div class="spec-grid"><div><strong>Datos locales</strong><p>No hay transmision de informacion personal a servidores. [CONFIG]</p></div><div><strong>Sin dependencias externas</strong><p>No se cargan CDN, fuentes remotas ni SDKs. [CONFIG]</p></div><div><strong>Reset visible</strong><p>El usuario puede borrar el estado local desde la UI. [CONFIG]</p></div></div></section>
+    <section class="doc-section"><h2>Validacion tecnica</h2><ol><li>Todos los HTML cierran con <code>&lt;/html&gt;</code>. [CONFIG]</li><li>Todos los links y scripts locales existen. [CONFIG]</li><li>Los JavaScript pasan parseo con <code>node --check</code>. [CONFIG]</li><li>No hay referencias a APIs externas operativas. [CONFIG]</li><li>El smoke con navegador confirma export, persistencia y limpieza. [CONFIG]</li></ol></section>
+  </main>
+  <footer class="footer">
+    <div class="wrap footer-grid">
+      <div><strong>MetodologIA</strong><p>Esta mini app es un material academico de MetodologIA. Opera sin login, guarda datos solo en el navegador y no envia informacion a servidores. El diagnostico es orientativo y no sustituye acompanamiento profesional, medico, psicologico, legal ni laboral.</p></div>
+      <div><strong>Hostinger ready</strong><p>Sube este repo completo como archivos estaticos. No hay build, backend, login ni base de datos.</p></div>
+    </div>
+  </footer>
+  <script src="assets/storage.js"></script>
+  <script src="assets/diagnostic-engine.js"></script>
+  <script src="assets/exporters.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
