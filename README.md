@@ -1,6 +1,6 @@
 # De Ocupado a Productivo - Mini App MetodologIA
 
-Repo estatico para ejecutar un taller practico sobre diagnostico del uso del tiempo, documentacion funcional/tecnica robusta y handoff BMAD/BMAP con asistente Gemini BYOK opcional. [DOC]
+Repo estatico para ejecutar un taller practico sobre diagnostico del uso del tiempo, documentacion funcional/tecnica robusta y handoff BMAD/BMAP con asistente Gemini BYOK. El flujo del workshop inicia cargando API key para que la IA vitamine e inicialice el entorno. [DOC]
 
 ## Entrada
 
@@ -28,10 +28,12 @@ Sube todos los archivos y carpetas del repo a `public_html` o a una subcarpeta d
 
 Entrada del taller: `workshop-bmad.html`. [DOC]
 
+Flujo principal: pegar API token propio de Google AI Studio, activar Gemini, ejecutar `Vitamina e inicializa con IA`, revisar comandos/prompts generados, y luego continuar con BMAD, Antigravity y Codex. [CONFIG]
+
 BMAD esta instalado para Google Antigravity y Codex con BMM, BMB y TEA. Usa `bmad-help` desde la raiz del repo para detectar el siguiente paso. [CONFIG]
 
 El chatbot Gemini es opcional y BYOK: el estudiante pega su API token de Google AI Studio en el navegador. El token se guarda en `sessionStorage` por defecto y solo en `localStorage` si el usuario activa "Recordar token". No se commitea ni se incluye en exports. [CONFIG]
 
-Capacidades activadas por token: chat de facilitador BMAD, analisis de anexos TXT/MD/JSON/HTML/PDF, identificacion responsable de imagenes PNG/JPG/WEBP y function calling local allowlisted para diagnostico, anexos, resumen de repo, handoff y limpieza de token. [CONFIG]
+Capacidades activadas por token: inicializacion IA del entorno, chat de facilitador BMAD, analisis de anexos TXT/MD/JSON/HTML/PDF, identificacion responsable de imagenes PNG/JPG/WEBP y function calling local allowlisted para diagnostico, anexos, resumen de repo, handoff y limpieza de token. [CONFIG]
 
 Nota de produccion: Google documenta que las API keys no deben exponerse directamente en apps cliente de produccion. Este repo mantiene BYOK para taller academico; una version productiva requiere backend o secretos server-side. [DOC]

@@ -54,7 +54,7 @@
   |
   |-- index.html --------------------> Diagnostic engine + storage + exporters
   |
-  |-- workshop-bmad.html ------------> Gemini workshop client
+  |-- workshop-bmad.html ------------> Gemini workshop client + AI initializer
              |                              |
              | reads local repo/docs        | optional external call
              v                              v
@@ -72,11 +72,11 @@
         <thead><tr><th>Componente</th><th>Responsabilidad</th><th>Entradas</th><th>Salidas</th></tr></thead>
         <tbody>
           <tr><td><code>index.html</code></td><td>App principal y estaciones de diagnostico. [CONFIG]</td><td>Actividades, decision, plan. [CONFIG]</td><td>Estado local, diagnostico, export base. [CONFIG]</td></tr>
-          <tr><td><code>workshop-bmad.html</code></td><td>Stepper de taller, token, anexos y handoff. [CONFIG]</td><td>Token, archivos, preguntas, contexto repo. [CONFIG]</td><td>Transcript, handoff MD/JSON, llamadas Gemini opcionales. [CONFIG]</td></tr>
+          <tr><td><code>workshop-bmad.html</code></td><td>Stepper de taller, token, inicializacion IA, anexos y handoff. [CONFIG]</td><td>Token, archivos, preguntas, contexto repo. [CONFIG]</td><td>Transcript, inicializacion, handoff MD/JSON, llamadas Gemini opcionales. [CONFIG]</td></tr>
           <tr><td><code>assets/storage.js</code></td><td>Persistencia y limpieza. [CONFIG]</td><td>Estado parcial. [CONFIG]</td><td><code>localStorage</code> serializado. [CONFIG]</td></tr>
           <tr><td><code>assets/diagnostic-engine.js</code></td><td>Scores deterministas y preguntas. [CONFIG]</td><td>Lista de actividades. [CONFIG]</td><td>Productive index, riesgo, deuda de foco, energia, buckets. [CONFIG]</td></tr>
           <tr><td><code>assets/exporters.js</code></td><td>Export BMAD/BMAP de app base. [CONFIG]</td><td>Estado + diagnostico. [CONFIG]</td><td>Markdown y JSON descargables. [CONFIG]</td></tr>
-          <tr><td><code>assets/gemini-workshop.js</code></td><td>BYOK, multimodalidad, function calling y handoff workshop. [CONFIG]</td><td>Token, modelo, archivos, transcript, repo context. [CONFIG]</td><td>Payload Gemini, respuestas, tool traces, handoff. [CONFIG]</td></tr>
+          <tr><td><code>assets/gemini-workshop.js</code></td><td>BYOK, inicializacion IA, multimodalidad, function calling y handoff workshop. [CONFIG]</td><td>Token, modelo, archivos, transcript, repo context. [CONFIG]</td><td>Payload Gemini, respuestas, salida vitaminada, tool traces, handoff. [CONFIG]</td></tr>
           <tr><td><code>specs/</code>, <code>quality/</code>, <code>bmap/</code></td><td>Entrada de Spec Driven Development y BMAD. [DOC]</td><td>Requisitos, criterios, plan de pruebas. [DOC]</td><td>Contexto para PRD, arquitectura, epicas y stories. [DOC]</td></tr>
         </tbody>
       </table>
@@ -124,6 +124,10 @@
     }
   ],
   "transcript": [],
+  "initialization": {
+    "status": "pending",
+    "output": ""
+  },
   "toolTraces": []
 }</code></pre>
         </div>
@@ -162,6 +166,21 @@ Usuario envia pregunta -> buildPayload()
   -> executeToolCall()
   -> functionResponse
   -> respuesta final al usuario</code></pre>
+      </div>
+    </section>
+
+    <section class="doc-section">
+      <span class="section-kicker">04.5</span>
+      <h2>Inicializacion IA del entorno</h2>
+      <p>El flujo del workshop empieza por token y luego por inicializacion IA. El navegador no ejecuta comandos de sistema; Gemini vitamina el entorno generando comandos copiables, prompts para <code>bmad-help</code>, checklist de readiness y handoff. [CONFIG]</p>
+      <div class="diagram-box">
+        <pre><code>API key en pantalla -> renderTokenStatus()
+  -> Vitamina e inicializa con IA
+  -> loadRepoContext()
+  -> modo tools
+  -> Gemini + function calling local
+  -> salida de inicializacion
+  -> handoff BMAD/BMAP sin token</code></pre>
       </div>
     </section>
 
@@ -217,7 +236,7 @@ Usuario envia pregunta -> buildPayload()
       <table class="activity-table">
         <thead><tr><th>Falla</th><th>Comportamiento esperado</th><th>Mensaje al usuario</th></tr></thead>
         <tbody>
-          <tr><td>Sin token. [CONFIG]</td><td>No se llama a Gemini. [CONFIG]</td><td>Indica pegar token para activar IA. [CONFIG]</td></tr>
+          <tr><td>Sin token. [CONFIG]</td><td>No se llama a Gemini ni se inicializa el entorno con IA. [CONFIG]</td><td>Indica pegar token para activar IA. [CONFIG]</td></tr>
           <tr><td>Token invalido o cuota. [INFERENCIA]</td><td>Se captura error HTTP y se muestra resumen. [CONFIG]</td><td>Error al llamar Gemini con detalle acotado. [CONFIG]</td></tr>
           <tr><td>Archivo no soportado. [CONFIG]</td><td>Se clasifica como no soportado. [CONFIG]</td><td>Explica que no se promete analisis. [CONFIG]</td></tr>
           <tr><td>PDF grande. [DOC]</td><td>Puede fallar por tamano o latencia. [INFERENCIA]</td><td>Sugerir reducir o usar Files API en version productiva. [DOC]</td></tr>

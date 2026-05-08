@@ -68,6 +68,18 @@
         "annex",
         "tools"
       ],
+      "aiInitialization": {
+        "entrypoint": "workshop-bmad.html",
+        "button": "Vitamina e inicializa con IA",
+        "outputs": [
+          "environment status",
+          "copyable commands",
+          "bmad-help prompt",
+          "codex prompt",
+          "readiness checklist",
+          "security risks"
+        ]
+      },
       "functionCalling": [
         "get_diagnostic_snapshot",
         "classify_uploaded_annexes",

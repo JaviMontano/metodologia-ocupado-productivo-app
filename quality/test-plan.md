@@ -34,6 +34,7 @@ Validar que la mini app estatica cumple el journey unico, no requiere login, per
 | TST-GEMINI-007 | Function declarations | Payload declara tools allowlisted | `functionDeclarations` presentes |
 | TST-GEMINI-008 | Function response | Tool conocida ejecuta y retorna resultado | `executeToolCall` produce JSON |
 | TST-GEMINI-009 | Tool desconocida | Rechazar nombre no allowlisted | Error controlado |
+| TST-GEMINI-010 | Inicializacion IA | Click en `Vitamina e inicializa con IA` carga contexto y produce salida | Output con comandos, prompts y checklist; sin token queda bloqueado |
 | TST-HANDOFF-001 | Export | Generar handoff MD/JSON | No contiene API token |
 | TST-SEC-002 | Secret scanning | Buscar patrones de key | No aparece patron de API key Google |
 | TST-RES-001 | Degradacion | Workshop sin token o sin contexto | App base sigue operando |
@@ -47,10 +48,11 @@ Validar que la mini app estatica cumple el journey unico, no requiere login, per
 4. Persona define un no deliberado. [DOC]
 5. Persona descarga Markdown y JSON. [CONFIG]
 6. Persona pega token propio y confirma estado activo. [CONFIG]
-7. Persona carga un PDF o imagen y ejecuta modo anexo o imagen. [CONFIG]
-8. Persona genera handoff workshop y verifica que no incluye token. [CONFIG]
-9. Persona limpia token y sesion antes de entregar equipo o iniciar otro intento. [CONFIG]
+7. Persona ejecuta `Vitamina e inicializa con IA` y revisa comandos/prompts generados. [CONFIG]
+8. Persona carga un PDF o imagen y ejecuta modo anexo o imagen. [CONFIG]
+9. Persona genera handoff workshop y verifica que no incluye token. [CONFIG]
+10. Persona limpia token y sesion antes de entregar equipo o iniciar otro intento. [CONFIG]
 
 ## Criterio de salida
 
-Todas las pruebas criticas pasan: smoke, links, JS, privacidad local, persistencia, export, reset, token BYOK, multimodalidad mock, function calling allowlisted, handoff sin secretos y rutas Hostinger. [CONFIG]
+Todas las pruebas criticas pasan: smoke, links, JS, privacidad local, persistencia, export, reset, token BYOK, inicializacion IA, multimodalidad mock, function calling allowlisted, handoff sin secretos y rutas Hostinger. [CONFIG]

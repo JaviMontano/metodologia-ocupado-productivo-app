@@ -21,9 +21,9 @@
       <div class="wrap hero-grid">
         <div>
           <span class="eyebrow">Workshop guiado BMAD + Gemini</span>
-          <h1>Materializar la mini app con <span>BMAD</span>, Antigravity y un chatbot multimodal.</h1>
-          <p class="lead">Este taller lleva al estudiante desde preparar entorno hasta publicar y usar los artefactos del repo como insumo de desarrollo agentico. [DOC]</p>
-          <div class="hero-actions"><a class="btn primary" href="#workshop">Iniciar stepper</a><a class="btn ghost" href="docs/bmad-workshop-help.md">Ver ayuda BMAD</a><a class="btn ghost" href="https://docs.bmad-method.org/tutorials/getting-started/">Docs BMAD</a></div>
+          <h1>Cargar API key y dejar que la IA <span>vitamine</span> el entorno.</h1>
+          <p class="lead">El flujo inicia activando Gemini desde pantalla; luego la IA carga contexto, revisa anexos y prepara el arranque BMAD/Antigravity/Codex con comandos, checklist y handoff. [DOC]</p>
+          <div class="hero-actions"><a class="btn primary" href="#workshop">Cargar API key</a><a class="btn ghost" href="docs/bmad-workshop-help.md">Ver ayuda BMAD</a><a class="btn ghost" href="https://docs.bmad-method.org/tutorials/getting-started/">Docs BMAD</a></div>
         </div>
         <div class="hero-panel">
           <div class="metric"><strong>BMAD</strong><span>BMM + BMB + TEA</span></div>
@@ -38,26 +38,26 @@
     </section>
     <section id="workshop" class="wrap section stepper">
       <aside class="step-list" aria-label="Pasos del taller">
-        <button class="step-button active" type="button" data-step-target="0"><span>01</span>Preparar entorno</button><button class="step-button " type="button" data-step-target="1"><span>02</span>Instalar BMAD</button><button class="step-button " type="button" data-step-target="2"><span>03</span>Ejecutar bmad-help</button><button class="step-button " type="button" data-step-target="3"><span>04</span>Cargar contenido</button><button class="step-button " type="button" data-step-target="4"><span>05</span>Chatbot Gemini</button><button class="step-button " type="button" data-step-target="5"><span>06</span>Handoff BMAD</button><button class="step-button " type="button" data-step-target="6"><span>07</span>Publicar GitHub</button><button class="step-button " type="button" data-step-target="7"><span>08</span>Desplegar Hostinger</button>
+        <button class="step-button active" type="button" data-step-target="0"><span>01</span>Cargar API key</button><button class="step-button " type="button" data-step-target="1"><span>02</span>IA inicializa entorno</button><button class="step-button " type="button" data-step-target="2"><span>03</span>Preparar entorno local</button><button class="step-button " type="button" data-step-target="3"><span>04</span>Instalar BMAD</button><button class="step-button " type="button" data-step-target="4"><span>05</span>Ejecutar bmad-help</button><button class="step-button " type="button" data-step-target="5"><span>06</span>Handoff BMAD</button><button class="step-button " type="button" data-step-target="6"><span>07</span>Publicar GitHub</button><button class="step-button " type="button" data-step-target="7"><span>08</span>Desplegar Hostinger</button>
       </aside>
       <div class="panel">
-        <article class="step-pane active" data-step-pane="0"><span class="eyebrow">Paso 01</span><h2>Preparar entorno</h2><p>Confirmar Node 20+, Git, GitHub CLI, Antigravity y repo limpio. [CONFIG]</p><pre><code>node -v
+        <article class="step-pane active" data-step-pane="0"><span class="eyebrow">Paso 01</span><h2>Cargar API key y activar IA</h2><p>El taller empieza pegando el API token propio de Google AI Studio. Sin token, el workshop puede leerse, pero la IA no vitamina ni inicializa el entorno. [CONFIG]</p><div class="token-status"><span data-token-status class="status-pill warn">Gemini bloqueado</span><span data-token-status-copy>Pega un token para activar el asistente.</span></div><p class="copy-note">El token vive en el navegador, no se exporta y puede borrarse desde pantalla. [CONFIG]</p></article>
+        <article class="step-pane" data-step-pane="1"><span class="eyebrow">Paso 02</span><h2>IA vitamina e inicializa entorno</h2><p>Con el token activo, Gemini carga contexto del repo, revisa anexos, ejecuta tools locales allowlisted y genera el arranque BMAD/Antigravity/Codex. La app estatica no ejecuta comandos del sistema; deja comandos y prompts listos para copiar. [CONFIG]</p><div class="toolbar"><button class="btn primary" type="button" data-ai-initialize>Vitamina e inicializa con IA</button><button class="btn ghost" type="button" data-load-repo-context>Cargar solo contexto</button></div><div class="status-line" data-ai-init-status>Inicializacion IA pendiente.</div><div class="status-line" data-repo-context-status>Contexto aun no cargado.</div><div class="file-list" data-repo-context-list></div><label>Salida de inicializacion IA<textarea data-ai-init-output rows="12" readonly placeholder="Aqui aparecera el arranque vitaminado para BMAD, Antigravity y Codex."></textarea></label></article>
+        <article class="step-pane" data-step-pane="2"><span class="eyebrow">Paso 03</span><h2>Preparar entorno local</h2><p>Ejecutar las verificaciones que la IA deja priorizadas para el taller. [CONFIG]</p><pre><code>node -v
 npm -v
 gh auth status
 git status --short
 antigravity --version</code></pre></article>
-        <article class="step-pane" data-step-pane="1"><span class="eyebrow">Paso 02</span><h2>Instalar BMAD</h2><p>Instalar BMM+BMB+TEA para Antigravity y Codex. [CONFIG]</p><pre><code>npx bmad-method install --yes \
+        <article class="step-pane" data-step-pane="3"><span class="eyebrow">Paso 04</span><h2>Instalar BMAD</h2><p>Instalar BMM+BMB+TEA para Antigravity y Codex. [CONFIG]</p><pre><code>npx bmad-method install --yes \
   --modules bmm,bmb,tea \
   --tools antigravity,codex \
   --user-name "Javier Montaño" \
   --communication-language es \
   --document-output-language es \
   --output-folder _bmad-output</code></pre></article>
-        <article class="step-pane" data-step-pane="2"><span class="eyebrow">Paso 03</span><h2>Ejecutar bmad-help</h2><p>Abrir el repo en Antigravity y pedir la ruta siguiente. [CONFIG]</p><pre><code>antigravity -n .
+        <article class="step-pane" data-step-pane="4"><span class="eyebrow">Paso 05</span><h2>Ejecutar bmad-help</h2><p>Abrir el repo en Antigravity y pegar el prompt vitaminado por la IA. [CONFIG]</p><pre><code>antigravity -n .
 bmad-help
 bmad-help Quiero materializar esta mini app desde PRD, arquitectura, epicas y stories.</code></pre></article>
-        <article class="step-pane" data-step-pane="3"><span class="eyebrow">Paso 04</span><h2>Cargar contenido del repo</h2><p>El chatbot puede cargar documentos locales del repo publicado para usarlos como contexto del taller. [CONFIG]</p><button class="btn primary" type="button" data-load-repo-context>Cargar contexto del repo</button><div class="status-line" data-repo-context-status>Contexto aun no cargado.</div><div class="file-list" data-repo-context-list></div></article>
-        <article class="step-pane" data-step-pane="4"><span class="eyebrow">Paso 05</span><h2>Activar el asistente Gemini</h2><p>BYOK: pega tu API token de Google AI Studio desde la pantalla del taller. El token activa chat, anexos multimodales, identificacion de imagenes y tools BMAD locales; sin token el taller queda en modo local. [CONFIG]</p><div class="token-status"><span data-token-status class="status-pill warn">Gemini bloqueado</span><span data-token-status-copy>Pega un token para activar el asistente.</span></div></article>
         <article class="step-pane" data-step-pane="5"><span class="eyebrow">Paso 06</span><h2>Generar handoff BMAD/BMAP</h2><p>Convertir conversacion, archivos cargados y diagnostico en entregables para agentes BMAD. [DOC]</p><button class="btn primary" type="button" data-generate-workshop-handoff>Generar handoff</button></article>
         <article class="step-pane" data-step-pane="6"><span class="eyebrow">Paso 07</span><h2>Publicar GitHub</h2><p>Subir el repo publico para que estudiantes lo clonen, revisen y desplieguen. [CONFIG]</p><pre><code>gh repo create JaviMontano/metodologia-ocupado-productivo-app --public --source . --remote origin --push</code></pre></article>
         <article class="step-pane" data-step-pane="7"><span class="eyebrow">Paso 08</span><h2>Desplegar Hostinger</h2><p>Subir todos los archivos y carpetas preservando rutas relativas. [SUPUESTO]</p><pre><code>public_html/

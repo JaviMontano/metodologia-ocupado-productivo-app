@@ -28,6 +28,7 @@
 | RF-024 | Handoff sin token y secret scanning | TST-SEC-002 |
 | RF-025 | Bloqueo sin token y app base local | TST-RES-001 |
 | RF-026 | Rutas relativas y guia Hostinger | TST-DEPLOY-001 |
+| RF-027 | `data-ai-initialize`, `initializeEnvironment`, `data-ai-init-output` | TST-GEMINI-010 |
 | NFR-001 | Rutas relativas | TST-LINK-001 |
 | NFR-002 | App base sin backend | TST-SEC-001 |
 | NFR-003 | JS estatico parseable | TST-JS-001 |

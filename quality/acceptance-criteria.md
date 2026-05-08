@@ -18,9 +18,10 @@
 5. Limpiar sesion: la app vuelve a estado inicial. [CONFIG]
 6. Workshop: el stepper navega los ocho pasos y carga contexto del repo cuando el navegador lo permite. [CONFIG]
 7. Gemini: sin token muestra bloqueo; con token genera payload y cambia estado a activo. [CONFIG]
-8. Multimodal: los anexos TXT, MD, JSON, HTML, PDF e imagenes soportadas se clasifican con MIME, tipo y capacidad. [CONFIG]
-9. Function calling: solo se ejecutan tools allowlisted y las desconocidas fallan cerradas. [CONFIG]
-10. Seguridad: ningun export contiene API token ni patron de key. [CONFIG]
+8. Inicializacion IA: despues de cargar API key, el boton vitaminado carga contexto y produce comandos, prompts y checklist. [CONFIG]
+9. Multimodal: los anexos TXT, MD, JSON, HTML, PDF e imagenes soportadas se clasifican con MIME, tipo y capacidad. [CONFIG]
+10. Function calling: solo se ejecutan tools allowlisted y las desconocidas fallan cerradas. [CONFIG]
+11. Seguridad: ningun export contiene API token ni patron de key. [CONFIG]
 
 ## Criterios de robustez documental
 

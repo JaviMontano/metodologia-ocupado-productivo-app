@@ -15,7 +15,7 @@
     'quality/test-plan.md',
     'specs/08-traceability.md'
   ];
-  const state={files:[],repoContext:'',repoLoaded:[],transcript:[],toolTraces:[]};
+  const state={files:[],repoContext:'',repoLoaded:[],transcript:[],toolTraces:[],initialization:null};
   const $=s=>document.querySelector(s);
   const $$=s=>Array.from(document.querySelectorAll(s));
   const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -313,14 +313,14 @@
   async function send(questionOverride,modeOverride){
     const input=$('[data-chat-input]');
     const question=(questionOverride||(input?.value||'')).trim();
-    if(!question) return;
+    if(!question) return '';
     saveToken();
     const apiKey=storedToken();
     append('user',question);
     if(input && !questionOverride) input.value='';
     if(!apiKey){
       append('error','Pega tu API token de Google AI Studio para activar Gemini. Sin token, el workshop sigue funcionando en modo local.');
-      return;
+      return '';
     }
     const payload=buildPayload(question,{mode:modeOverride||selectedMode()});
     try{
@@ -342,13 +342,52 @@
           ].filter(Boolean)
         });
         const final=await callGemini(apiKey,{model:payload.model,body:followupBody});
-        append('assistant',extractText(final)||'Gemini ejecuto tools, pero respondio sin texto final.');
+        const text=extractText(final)||'Gemini ejecuto tools, pero respondio sin texto final.';
+        append('assistant',text);
+        return text;
       }else{
-        append('assistant',extractText(first)||'Gemini respondio sin texto.');
+        const text=extractText(first)||'Gemini respondio sin texto.';
+        append('assistant',text);
+        return text;
       }
     }catch(err){
       append('error','Error al llamar Gemini: '+(err.message||err));
+      return '';
     }
+  }
+
+  async function initializeEnvironment(){
+    const status=$('[data-ai-init-status]');
+    const output=$('[data-ai-init-output]');
+    saveToken();
+    if(!storedToken()){
+      const msg='Primero pega tu API token de Google AI Studio. La IA no puede vitaminar ni inicializar el entorno sin token.';
+      if(status) status.textContent=msg;
+      append('error',msg);
+      return '';
+    }
+    if(status) status.textContent='Cargando contexto del repo y preparando inicializacion IA...';
+    if(!state.repoContext) await loadRepoContext();
+    $$('[data-gemini-mode]').forEach(r=>{r.checked=r.value==='tools';});
+    const prompt=[
+      'Vitamina e inicializa este entorno de taller para materializar la mini app De Ocupado a Productivo.',
+      'Usa function calling local cuando lo necesites para leer diagnostico, clasificar anexos, resumir contexto y construir handoff.',
+      'Entrega una salida operativa con estas secciones:',
+      '1. Estado del entorno y contexto cargado.',
+      '2. Que ya esta listo en el repo.',
+      '3. Que debe ejecutar el estudiante en terminal, en orden.',
+      '4. Prompt exacto para pegar en Antigravity con bmad-help.',
+      '5. Prompt exacto para Codex si se continua desde el repo.',
+      '6. Riesgos de seguridad, especialmente token y anexos.',
+      '7. Checklist de terminado para iniciar BMAD.',
+      'No ejecutes comandos del sistema; deja comandos copiables y criterios verificables.'
+    ].join('\n');
+    const result=await send(prompt,'tools');
+    state.initialization={at:new Date().toISOString(),status:result?'success':'degraded',output:result,repoContextLoaded:state.repoLoaded,files:state.files.map(({name,mime,size,capability,supported})=>({name,mime,size,capability,supported}))};
+    if(output) output.value=result||'Inicializacion degradada. Revisa el chat para ver el error o vuelve a intentar con token valido.';
+    if(status) status.textContent=result?'Inicializacion IA completa. Revisa la salida y genera handoff.':'Inicializacion IA degradada. Revisa el chat.';
+    handoff();
+    return result;
   }
 
   async function loadRepoContext(){
@@ -388,7 +427,8 @@
         model:$('[data-gemini-model]')?.value.trim()||'gemini-2.5-flash',
         tokenState:tokenLocation()==='none'?'absent':'provided-not-exported',
         modes:['facilitator','image','annex','tools'],
-        functionDeclarations:functionDeclarations.map(f=>f.name)
+        functionDeclarations:functionDeclarations.map(f=>f.name),
+        initialization:state.initialization
       },
       repoContextLoaded:state.repoLoaded,
       files:state.files.map(({name,mime,size,kind,capability,supported})=>({name,mime,size,kind,capability,supported})),
@@ -396,7 +436,7 @@
       toolTraces:state.toolTraces,
       appState
     };
-    const md='# Workshop BMAD Handoff\n\n## Siguiente accion\n\nEjecutar bmad-help en Antigravity desde la raiz del repo y usar este handoff como contexto.\n\n## Comandos\n\n'+payload.bmad.nextCommands.map(c=>'- '+c).join('\n')+'\n\n## Gemini\n\n- Modelo: '+payload.gemini.model+'\n- Token: '+payload.gemini.tokenState+'\n- Tools: '+payload.gemini.functionDeclarations.join(', ')+'\n\n## Archivos cargados\n\n'+(payload.files.map(f=>'- '+f.name+' | '+f.mime+' | '+f.capability+' | '+f.kind).join('\n')||'Sin archivos cargados')+'\n\n## Tool traces\n\n'+(state.toolTraces.map(t=>'- '+t.name+' @ '+t.at).join('\n')||'Sin function calls')+'\n\n## Conversacion\n\n'+(state.transcript.map(m=>'### '+m.role+'\n'+m.text).join('\n\n')||'Sin conversacion')+'\n';
+    const md='# Workshop BMAD Handoff\n\n## Siguiente accion\n\nEjecutar bmad-help en Antigravity desde la raiz del repo y usar este handoff como contexto.\n\n## Comandos\n\n'+payload.bmad.nextCommands.map(c=>'- '+c).join('\n')+'\n\n## Gemini\n\n- Modelo: '+payload.gemini.model+'\n- Token: '+payload.gemini.tokenState+'\n- Tools: '+payload.gemini.functionDeclarations.join(', ')+'\n- Inicializacion IA: '+(state.initialization?.status||'pendiente')+'\n\n## Inicializacion IA\n\n'+(state.initialization?.output||'Pendiente. Usa el boton Vitamina e inicializa con IA.')+'\n\n## Archivos cargados\n\n'+(payload.files.map(f=>'- '+f.name+' | '+f.mime+' | '+f.capability+' | '+f.kind).join('\n')||'Sin archivos cargados')+'\n\n## Tool traces\n\n'+(state.toolTraces.map(t=>'- '+t.name+' @ '+t.at).join('\n')||'Sin function calls')+'\n\n## Conversacion\n\n'+(state.transcript.map(m=>'### '+m.role+'\n'+m.text).join('\n\n')||'Sin conversacion')+'\n';
     const json=JSON.stringify(payload,null,2);
     const mdEl=$('[data-workshop-handoff-md]');
     const jsonEl=$('[data-workshop-handoff-json]');
@@ -426,6 +466,7 @@
     }
     if(e.target.closest('[data-save-gemini-token]')) saveToken();
     if(e.target.closest('[data-clear-gemini-token]')) clearToken();
+    if(e.target.closest('[data-ai-initialize]')) initializeEnvironment();
     if(e.target.closest('[data-send-chat]')) send();
     if(e.target.closest('[data-analyze-image]')){
       $$('[data-gemini-mode]').forEach(r=>{r.checked=r.value==='image';});
@@ -476,6 +517,7 @@
     executeToolCall,
     extractFunctionCalls,
     clearToken,
+    initializeEnvironment,
     loadRepoContext,
     handoff,
     state,

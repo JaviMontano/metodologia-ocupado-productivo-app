@@ -14,7 +14,7 @@ Existe un unico actor: usuario diagnostico de tiempo. Puede ser estudiante, prof
 | --- | --- | --- |
 | Local deterministico | Siempre | Captura, diagnostico, debate, plan, export y reset. [CONFIG] |
 | Workshop BMAD | Siempre | Stepper, comandos, docs locales y handoff. [CONFIG] |
-| Gemini BYOK | Solo con token pegado en UI | Chat, multimodalidad, imagenes, anexos y function calling local. [CONFIG] |
+| Gemini BYOK | Solo con token pegado en UI | Chat, inicializacion IA, multimodalidad, imagenes, anexos y function calling local. [CONFIG] |
 
 ## Requisitos funcionales
 
@@ -46,6 +46,7 @@ Existe un unico actor: usuario diagnostico de tiempo. Puede ser estudiante, prof
 | RF-024 | Excluir secretos de exports | Handoff no contiene token ni patron de API key | TST-SEC-002 |
 | RF-025 | Degradar sin token o sin red | App base sigue operando y workshop explica bloqueo | TST-RES-001 |
 | RF-026 | Desplegar como repo estatico | Hostinger sirve el repo sin build ni backend | TST-DEPLOY-001 |
+| RF-027 | Vitaminar e inicializar entorno con IA | Con token activo, el boton carga contexto, usa modo tools y genera arranque BMAD/Antigravity/Codex | TST-GEMINI-010 |
 
 ## Invariantes
 
@@ -55,6 +56,7 @@ Existe un unico actor: usuario diagnostico de tiempo. Puede ser estudiante, prof
 4. El reset de app no debe borrar archivos del repo, solo estado del navegador. [CONFIG]
 5. El token Gemini nunca se escribe en archivos, exports, transcript descargable como secreto ni commits. [CONFIG]
 6. Gemini no debe operar sin token pegado por el usuario. [CONFIG]
+7. El flujo de taller debe comenzar por cargar API key y luego inicializar el entorno con IA. [CONFIG]
 
 ## Reglas de imagenes y anexos
 

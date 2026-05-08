@@ -25,15 +25,17 @@ bmad-help Quiero materializar esta mini app usando el contenido del repo. Dime e
 
 ## Secuencia recomendada
 
-1. `bmad-help`: detectar estado del proyecto.
-2. `bmad-create-prd`: formalizar requerimientos desde `documento-funcional.html`, `specs/` y `bmap/prd.md`.
-3. `bmad-create-architecture`: usar `documento-tecnico.html`, `assets/` y `quality/`.
-4. `bmad-create-epics-and-stories`: convertir PRD y arquitectura en stories.
-5. `bmad-check-implementation-readiness`: validar cohesion.
-6. `bmad-sprint-planning`: crear seguimiento.
-7. `bmad-create-story`: preparar story concreta.
-8. `bmad-dev-story`: implementar.
-9. `bmad-code-review`: revisar calidad.
+1. Cargar API key en `workshop-bmad.html`. [CONFIG]
+2. Ejecutar `Vitamina e inicializa con IA` para que Gemini cargue contexto, use tools locales y deje prompts/comandos listos. [CONFIG]
+3. `bmad-help`: detectar estado del proyecto usando el prompt vitaminado. [CONFIG]
+4. `bmad-create-prd`: formalizar requerimientos desde `documento-funcional.html`, `specs/` y `bmap/prd.md`.
+5. `bmad-create-architecture`: usar `documento-tecnico.html`, `assets/` y `quality/`.
+6. `bmad-create-epics-and-stories`: convertir PRD y arquitectura en stories.
+7. `bmad-check-implementation-readiness`: validar cohesion.
+8. `bmad-sprint-planning`: crear seguimiento.
+9. `bmad-create-story`: preparar story concreta.
+10. `bmad-dev-story`: implementar.
+11. `bmad-code-review`: revisar calidad.
 
 ## Contexto que debe cargarse
 
@@ -53,8 +55,9 @@ El API token es BYOK. No se escribe en archivos, no se exporta, no se publica en
 
 ## Capacidades Gemini del workshop
 
-1. Facilitador BMAD: conversa sobre PRD, arquitectura, epicas, stories, DoD y pruebas. [CONFIG]
-2. Analisis de anexos: usa TXT, MD, JSON, HTML y PDF cargados por el usuario. [CONFIG]
-3. Identificacion responsable de imagenes: describe contenido visible sin identificar personas ni inferir atributos sensibles. [CONFIG]
-4. Function calling local: permite `get_diagnostic_snapshot`, `classify_uploaded_annexes`, `build_bmad_handoff`, `summarize_workshop_context` y `clear_gemini_token`. [CONFIG]
-5. Handoff seguro: exporta transcript, metadata de archivos y tool traces sin token. [CONFIG]
+1. Inicializacion IA: vitamina el entorno con contexto del repo, comandos copiables, prompts para Antigravity/Codex y checklist BMAD. [CONFIG]
+2. Facilitador BMAD: conversa sobre PRD, arquitectura, epicas, stories, DoD y pruebas. [CONFIG]
+3. Analisis de anexos: usa TXT, MD, JSON, HTML y PDF cargados por el usuario. [CONFIG]
+4. Identificacion responsable de imagenes: describe contenido visible sin identificar personas ni inferir atributos sensibles. [CONFIG]
+5. Function calling local: permite `get_diagnostic_snapshot`, `classify_uploaded_annexes`, `build_bmad_handoff`, `summarize_workshop_context` y `clear_gemini_token`. [CONFIG]
+6. Handoff seguro: exporta transcript, metadata de archivos, inicializacion IA y tool traces sin token. [CONFIG]

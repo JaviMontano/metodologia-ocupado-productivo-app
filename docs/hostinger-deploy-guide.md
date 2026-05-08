@@ -32,8 +32,9 @@ La app base sigue funcionando sin internet. El chatbot multimodal solo llama Gem
 1. Abrir `workshop-bmad.html`.
 2. Confirmar que el estado inicial dice `Gemini bloqueado`.
 3. Pegar token propio solo si se quiere probar la llamada externa.
-4. Cargar un archivo de texto, PDF o imagen soportada.
-5. Usar modo Facilitador BMAD, Imagen, Anexo o Tools BMAD.
-6. Generar handoff y confirmar que no incluye token. [CONFIG]
+4. Ejecutar `Vitamina e inicializa con IA` para cargar contexto y producir comandos/prompts del taller.
+5. Cargar un archivo de texto, PDF o imagen soportada.
+6. Usar modo Facilitador BMAD, Imagen, Anexo o Tools BMAD.
+7. Generar handoff y confirmar que no incluye token. [CONFIG]
 
 Para produccion, no publicar una API key compartida ni ponerla en codigo fuente. El patron de este repo es BYOK academico; una version productiva debe usar backend o secretos server-side. [DOC]

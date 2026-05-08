@@ -42,7 +42,7 @@
       <p>La app toma una semana de actividades y la convierte en un diagnostico accionable: que consume tiempo, que produce avance, que drena energia, que debe agruparse y que debe dejar de hacerse deliberadamente. [DOC]</p>
       <div class="spec-grid">
         <div><strong>Promesa funcional</strong><p>El usuario abre <code>index.html</code>, captura actividades, recibe diagnostico, conversa con preguntas socraticas, disena su semana y exporta insumos BMAD/BMAP. [CONFIG]</p></div>
-        <div><strong>Modelo de operacion</strong><p>El core funciona sin login, sin backend y sin internet. Gemini solo se activa si el usuario pega un API token propio desde pantalla. [CONFIG]</p></div>
+        <div><strong>Modelo de operacion</strong><p>El core funciona sin login, sin backend y sin internet. El flujo de taller inicia pegando un API token propio para que Gemini vitamine e inicialice el entorno. [CONFIG]</p></div>
         <div><strong>Resultado del taller</strong><p>El estudiante sale con evidencia local, un plan semanal y un handoff que puede alimentar BMAD, Antigravity, Codex o un pipeline de desarrollo. [DOC]</p></div>
       </div>
       <div class="diagram-box" role="img" aria-label="Flujo funcional principal">
@@ -80,7 +80,8 @@
         <li><strong>Diagnosticar.</strong> La app calcula indice productivo, riesgo de rueda de hamster, deuda de foco, energia neta y carga operativa. [CONFIG]</li>
         <li><strong>Debatir.</strong> El usuario responde preguntas socraticas para pasar de explicacion a decision. [DOC]</li>
         <li><strong>Planificar.</strong> Define prioridad unica, bloques de deep work, batch operativo, buffer y no deliberado. [DOC]</li>
-        <li><strong>Activar IA opcional.</strong> En <code>workshop-bmad.html</code>, pega token Gemini, carga anexos y conversa con el facilitador BMAD. [CONFIG]</li>
+        <li><strong>Cargar API key.</strong> En <code>workshop-bmad.html</code>, pega token Gemini para activar el asistente desde pantalla. [CONFIG]</li>
+        <li><strong>Vitaminar entorno.</strong> La IA carga contexto del repo, revisa anexos, ejecuta tools locales y deja comandos/prompts para BMAD, Antigravity y Codex. [CONFIG]</li>
         <li><strong>Exportar.</strong> Descarga Markdown y JSON para BMAD/BMAP sin incluir token ni secretos. [CONFIG]</li>
         <li><strong>Reiniciar.</strong> Limpia sesion y token visible si quiere empezar de cero o preparar otra clase. [CONFIG]</li>
       </ol>
@@ -96,7 +97,7 @@
           <tr><td>Mapa de tiempo</td><td>Actividades clasificadas. [CONFIG]</td><td>Cuadrantes impacto/energia. [CONFIG]</td><td>Lectura visual de fugas y palancas. [CONFIG]</td></tr>
           <tr><td>Debate socratico</td><td>Scores y decision libre. [CONFIG]</td><td>Preguntas segun patron dominante. [CONFIG]</td><td>Decision redactada por el usuario. [DOC]</td></tr>
           <tr><td>Plan semanal</td><td>Decision y diagnostico. [DOC]</td><td>Plantilla de diseno de semana. [CONFIG]</td><td>Plan accionable de cinco campos. [CONFIG]</td></tr>
-          <tr><td>Workshop BMAD</td><td>Repo, anexos y token opcional. [CONFIG]</td><td>Gemini multimodal y tools locales. [CONFIG]</td><td>Guia, handoff y trazas de taller. [CONFIG]</td></tr>
+          <tr><td>Workshop BMAD</td><td>API key, repo y anexos. [CONFIG]</td><td>Gemini vitamina contexto, tools locales y prompts BMAD. [CONFIG]</td><td>Guia, handoff, inicializacion IA y trazas de taller. [CONFIG]</td></tr>
           <tr><td>Exportar</td><td>Estado local y transcript opcional. [CONFIG]</td><td>Serializacion Markdown/JSON. [CONFIG]</td><td><code>bmad-input.md</code>, <code>bmap-session.json</code> y handoff workshop. [CONFIG]</td></tr>
         </tbody>
       </table>
@@ -135,6 +136,7 @@
           <tr><td>RF-024</td><td>No exportar secretos. [CONFIG]</td><td>Exports no contienen token ni patrones de API key. [CONFIG]</td><td>TST-SEC-002</td></tr>
           <tr><td>RF-025</td><td>Degradar sin internet o sin token. [CONFIG]</td><td>App base sigue funcionando y workshop explica el bloqueo. [CONFIG]</td><td>TST-RES-001</td></tr>
           <tr><td>RF-026</td><td>Publicar como repo estatico. [SUPUESTO]</td><td>Hostinger sirve archivos sin build ni backend. [CONFIG]</td><td>TST-DEPLOY-001</td></tr>
+          <tr><td>RF-027</td><td>Vitaminar e inicializar entorno con IA. [CONFIG]</td><td>Con token activo, el boton carga contexto, usa modo tools y genera arranque BMAD/Antigravity/Codex. [CONFIG]</td><td>TST-GEMINI-010</td></tr>
         </tbody>
       </table>
     </section>
@@ -158,7 +160,7 @@
     <section id="taller" class="doc-section">
       <span class="section-kicker">07</span>
       <h2>Experiencia de taller BMAD</h2>
-      <p>El workshop guia al estudiante por ocho pasos: preparar entorno, instalar BMAD, ejecutar ayuda, cargar repo, conversar con Gemini, generar handoff, publicar GitHub y desplegar Hostinger. [CONFIG]</p>
+      <p>El workshop guia al estudiante por ocho pasos: cargar API key, vitaminar e inicializar entorno con IA, preparar entorno local, instalar BMAD, ejecutar ayuda con prompt vitaminado, generar handoff, publicar GitHub y desplegar Hostinger. [CONFIG]</p>
       <div class="spec-grid">
         <div><strong>Entrada pedagogica</strong><p>La teoria De Ocupado a Productivo se practica con datos propios o demo. [DOC]</p></div>
         <div><strong>Entrada tecnica</strong><p>El repo completo se convierte en material para PRD, arquitectura, epicas, stories y pruebas. [CONFIG]</p></div>
@@ -175,6 +177,7 @@
           <tr><td>App usable sin login. [CONFIG]</td><td>Smoke local abre home, captura actividad y calcula diagnostico. [CONFIG]</td><td>Success</td></tr>
           <tr><td>Documentacion robusta. [DOC]</td><td>Documento funcional y tecnico tienen indice, tablas, diagramas, riesgos y trazabilidad. [CONFIG]</td><td>Success</td></tr>
           <tr><td>Gemini activable desde UI. [CONFIG]</td><td>Token cambia estado, payload se genera y sin token no hay llamada externa. [CONFIG]</td><td>Success</td></tr>
+          <tr><td>IA inicializa entorno. [CONFIG]</td><td>Con token activo, el boton de inicializacion carga contexto y produce comandos, prompts y checklist. [CONFIG]</td><td>Success</td></tr>
           <tr><td>Multimodalidad controlada. [DOC]</td><td>TXT, MD, JSON, HTML, PDF e imagenes se clasifican y viajan como partes compatibles. [CONFIG]</td><td>Success</td></tr>
           <tr><td>Secrets protegidos. [CONFIG]</td><td>Busqueda negativa de patrones de token y exports sin API key. [CONFIG]</td><td>Success</td></tr>
           <tr><td>Repo desplegable. [SUPUESTO]</td><td>Rutas relativas y archivos estaticos listos para Hostinger. [CONFIG]</td><td>Success</td></tr>
@@ -191,7 +194,7 @@
           <tr><td>App base</td><td>RF-001 a RF-011</td><td><code>index.html</code>, <code>assets/app.js</code>, <code>assets/diagnostic-engine.js</code>. [CONFIG]</td><td>TST-SMOKE, TST-FUNC, TST-ENG, TST-STOR</td></tr>
           <tr><td>Workshop</td><td>RF-012 a RF-016</td><td><code>workshop-bmad.html</code>, <code>docs/bmad-workshop-help.md</code>. [CONFIG]</td><td>TST-WORKSHOP, TST-BMAD, TST-GEMINI</td></tr>
           <tr><td>Multimodal</td><td>RF-017 a RF-022</td><td><code>assets/gemini-workshop.js</code>. [CONFIG]</td><td>TST-GEMINI-002 a TST-GEMINI-009</td></tr>
-          <tr><td>Export y deploy</td><td>RF-023 a RF-026</td><td><code>assets/exporters.js</code>, <code>bmap/</code>, <code>quality/</code>. [CONFIG]</td><td>TST-HANDOFF, TST-SEC, TST-DEPLOY</td></tr>
+          <tr><td>Export y deploy</td><td>RF-023 a RF-027</td><td><code>assets/exporters.js</code>, <code>bmap/</code>, <code>quality/</code>. [CONFIG]</td><td>TST-HANDOFF, TST-SEC, TST-DEPLOY, TST-GEMINI-010</td></tr>
         </tbody>
       </table>
     </section>

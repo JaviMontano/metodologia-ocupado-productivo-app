@@ -7,7 +7,7 @@
 3. Los prototipos son navegables y siguen un unico usuario. [CONFIG]
 4. El journey existe en Markdown y HTML. [CONFIG]
 5. Specs SDD, quality y BMAP/BMAD estan completos. [DOC]
-6. Workshop BMAD incluye token UI, multimodalidad, function calling local y handoff seguro. [CONFIG]
+6. Workshop BMAD inicia con API key e incluye inicializacion IA, multimodalidad, function calling local y handoff seguro. [CONFIG]
 
 ## Calidad
 
@@ -18,5 +18,6 @@
 5. Export Markdown y JSON funcionan. [CONFIG]
 6. Reset limpia estado local. [CONFIG]
 7. Sin token, Gemini queda bloqueado y no llama API externa. [CONFIG]
-8. Con mock, payload Gemini incluye anexos y function declarations. [CONFIG]
-9. Handoff workshop no contiene API token ni patron de key. [CONFIG]
+8. Con mock, la inicializacion IA carga contexto y genera salida operativa sin ejecutar comandos del sistema. [CONFIG]
+9. Con mock, payload Gemini incluye anexos y function declarations. [CONFIG]
+10. Handoff workshop no contiene API token ni patron de key. [CONFIG]

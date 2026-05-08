@@ -53,3 +53,9 @@ Then devuelve `functionResponse` y registra tool trace sin secretos. [CONFIG]
 Given existe transcript, anexos o tool traces
 When el usuario genera handoff workshop
 Then Markdown y JSON no contienen API token ni secretos. [CONFIG]
+
+## AC-010 Inicializacion IA
+
+Given el usuario pego API token y esta en `workshop-bmad.html`
+When hace clic en `Vitamina e inicializa con IA`
+Then la app carga contexto del repo, activa modo tools, solicita arranque BMAD/Antigravity/Codex y deja salida visible sin ejecutar comandos del sistema. [CONFIG]

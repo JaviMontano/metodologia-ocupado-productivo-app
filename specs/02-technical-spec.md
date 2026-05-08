@@ -9,13 +9,13 @@ HTML, CSS y JavaScript plano ejecutados por navegador. No hay build ni dependenc
 | Componente | Responsabilidad |
 | --- | --- |
 | `index.html` | UI principal y estaciones de diagnostico. [CONFIG] |
-| `workshop-bmad.html` | Stepper BMAD, token Gemini, modos multimodales, handoff y controles de seguridad. [CONFIG] |
+| `workshop-bmad.html` | Stepper BMAD, token Gemini, inicializacion IA, modos multimodales, handoff y controles de seguridad. [CONFIG] |
 | `assets/styles.css` | Sistema visual oscuro MetodologIA, documentos robustos y workshop. [CONFIG] |
 | `assets/storage.js` | Adaptador de `localStorage` para app base. [CONFIG] |
 | `assets/diagnostic-engine.js` | Calculo deterministico del diagnostico. [CONFIG] |
 | `assets/exporters.js` | Markdown, JSON y descarga local. [CONFIG] |
 | `assets/app.js` | Binding DOM, render y eventos de app base. [CONFIG] |
-| `assets/gemini-workshop.js` | Token manager, carga multimodal, Gemini REST, function calling local y handoff. [CONFIG] |
+| `assets/gemini-workshop.js` | Token manager, inicializacion IA, carga multimodal, Gemini REST, function calling local y handoff. [CONFIG] |
 | `data/questions.json` | Banco de preguntas de referencia. [CONFIG] |
 | `data/rubrics.json` | Rubricas impacto/energia/tipo. [CONFIG] |
 
@@ -32,6 +32,12 @@ HTML, CSS y JavaScript plano ejecutados por navegador. No hay build ni dependenc
 El cliente usa REST contra `https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={apiKey}`. El modelo default es `gemini-2.5-flash` y puede editarse en pantalla. [CONFIG]
 
 Google documenta que una API key puede proveerse explicitamente en entornos web para REST, pero advierte que no se debe exponer una key real en cliente para produccion. Por eso este repo declara el patron como academico BYOK y exige validacion server-side antes de produccion. [DOC]
+
+## Inicializacion IA
+
+El flujo del workshop empieza con API key en pantalla y luego `Vitamina e inicializa con IA`. La funcion `initializeEnvironment()` guarda el token segun preferencia del usuario, carga contexto del repo con `loadRepoContext()`, fuerza modo `tools`, solicita a Gemini arranque BMAD/Antigravity/Codex y guarda la salida en `state.initialization` y en el handoff. [CONFIG]
+
+La app estatica no ejecuta comandos de sistema. La IA inicializa operativamente el entorno dejando comandos copiables, prompts y checklist, no ejecutando terminal desde navegador. [CONFIG]
 
 ## Entrada multimodal
 
