@@ -57,7 +57,7 @@ antigravity --version</code></pre></article>
 bmad-help
 bmad-help Quiero materializar esta mini app desde PRD, arquitectura, epicas y stories.</code></pre></article>
         <article class="step-pane" data-step-pane="3"><span class="eyebrow">Paso 04</span><h2>Cargar contenido del repo</h2><p>El chatbot puede cargar documentos locales del repo publicado para usarlos como contexto del taller. [CONFIG]</p><button class="btn primary" type="button" data-load-repo-context>Cargar contexto del repo</button><div class="status-line" data-repo-context-status>Contexto aun no cargado.</div><div class="file-list" data-repo-context-list></div></article>
-        <article class="step-pane" data-step-pane="4"><span class="eyebrow">Paso 05</span><h2>Conversar con chatbot Gemini</h2><p>BYOK: pega tu API token de Google AI Studio. El token vive en navegador y no se exporta. [CONFIG]</p></article>
+        <article class="step-pane" data-step-pane="4"><span class="eyebrow">Paso 05</span><h2>Activar el asistente Gemini</h2><p>BYOK: pega tu API token de Google AI Studio desde la pantalla del taller. El token activa chat, anexos multimodales, identificacion de imagenes y tools BMAD locales; sin token el taller queda en modo local. [CONFIG]</p><div class="token-status"><span data-token-status class="status-pill warn">Gemini bloqueado</span><span data-token-status-copy>Pega un token para activar el asistente.</span></div></article>
         <article class="step-pane" data-step-pane="5"><span class="eyebrow">Paso 06</span><h2>Generar handoff BMAD/BMAP</h2><p>Convertir conversacion, archivos cargados y diagnostico en entregables para agentes BMAD. [DOC]</p><button class="btn primary" type="button" data-generate-workshop-handoff>Generar handoff</button></article>
         <article class="step-pane" data-step-pane="6"><span class="eyebrow">Paso 07</span><h2>Publicar GitHub</h2><p>Subir el repo publico para que estudiantes lo clonen, revisen y desplieguen. [CONFIG]</p><pre><code>gh repo create JaviMontano/metodologia-ocupado-productivo-app --public --source . --remote origin --push</code></pre></article>
         <article class="step-pane" data-step-pane="7"><span class="eyebrow">Paso 08</span><h2>Desplegar Hostinger</h2><p>Subir todos los archivos y carpetas preservando rutas relativas. [SUPUESTO]</p><pre><code>public_html/
@@ -86,18 +86,34 @@ bmad-help Quiero materializar esta mini app desde PRD, arquitectura, epicas y st
       <div class="panel chat-config">
         <span class="eyebrow">Chatbot multimodal</span>
         <h2>Gemini API token</h2>
+        <div class="token-status"><span data-token-status class="status-pill warn">Gemini bloqueado</span><span data-token-status-copy>Pega un token para activar el asistente.</span></div>
         <label>API token<input data-gemini-token type="password" autocomplete="off" placeholder="Pega tu API token de Google AI Studio"></label>
         <label><input data-remember-token type="checkbox"> Recordar token en este navegador</label>
         <label>Modelo<input data-gemini-model value="gemini-2.5-flash"></label>
+        <div class="toolbar"><button class="btn ghost" type="button" data-save-gemini-token>Activar token</button><button class="btn danger" type="button" data-clear-gemini-token>Borrar token</button></div>
         <label>Archivos multimodales<input data-workshop-files type="file" multiple accept=".txt,.md,.json,.html,.pdf,image/png,image/jpeg,image/webp"></label>
         <div class="file-list" data-file-list><p>No hay archivos cargados.</p></div>
+        <div class="capability-grid" aria-label="Capacidades Gemini">
+          <div class="capability-card blocked" data-capability-card="token"><strong>Token</strong><span>Bloqueado hasta pegar API token.</span></div>
+          <div class="capability-card blocked" data-capability-card="files"><strong>Anexos</strong><span>Carga texto, PDF o imagenes.</span></div>
+          <div class="capability-card ready" data-capability-card="tools"><strong>Tools locales</strong><span>Allowlist lista para function calling.</span></div>
+          <div class="capability-card ready" data-capability-card="exports"><strong>Exports</strong><span>Handoff sin secretos.</span></div>
+        </div>
         <p class="copy-note">No pegues tokens en chats, issues, commits ni exports. Para publicar en GitHub, confirma que no exista ningun patron de token Google en el repo. [CONFIG]</p>
       </div>
       <div class="panel chat-panel">
         <h2>Asistente del taller</h2>
+        <div class="mode-grid" role="radiogroup" aria-label="Modo del asistente">
+          <label class="mode-option"><input type="radio" name="gemini-mode" value="facilitator" data-gemini-mode checked><span><strong>Facilitador BMAD</strong><br>Guia el taller, comandos, PRD, arquitectura, epicas y stories. [CONFIG]</span></label>
+          <label class="mode-option"><input type="radio" name="gemini-mode" value="image" data-gemini-mode><span><strong>Identificar imagen</strong><br>Describe contenido visible, texto, diagramas y relacion con productividad. [CONFIG]</span></label>
+          <label class="mode-option"><input type="radio" name="gemini-mode" value="annex" data-gemini-mode><span><strong>Analizar anexo</strong><br>Resume PDFs, textos y documentos cargados para el handoff. [CONFIG]</span></label>
+          <label class="mode-option"><input type="radio" name="gemini-mode" value="tools" data-gemini-mode><span><strong>Tools BMAD</strong><br>Permite function calling local con diagnostico, anexos y handoff. [CONFIG]</span></label>
+        </div>
         <div class="chat-log" data-chat-log><div class="chat-msg assistant">Pega tu token, carga contexto o archivos, y pregunta como llevar este repo por BMAD.</div></div>
         <label>Pregunta<textarea data-chat-input rows="4" placeholder="Ej: Con estos specs, dime que workflow BMAD ejecutar primero y que prompt usar en Antigravity."></textarea></label>
-        <div class="toolbar"><button class="btn primary" type="button" data-send-chat>Enviar a Gemini</button><button class="btn ghost" type="button" data-clear-chat>Limpiar chat</button></div>
+        <div class="toolbar"><button class="btn primary" type="button" data-send-chat>Enviar a Gemini</button><button class="btn ghost" type="button" data-analyze-image>Analizar imagen</button><button class="btn ghost" type="button" data-analyze-annex>Analizar anexo</button><button class="btn ghost" type="button" data-clear-chat>Limpiar chat</button></div>
+        <h3>Tool traces</h3>
+        <div class="tool-log" data-tool-log><div>Sin function calls ejecutadas.</div></div>
       </div>
     </section>
     <section class="wrap section">

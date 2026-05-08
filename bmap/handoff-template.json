@@ -50,7 +50,31 @@
     "gemini": {
       "mode": "BYOK",
       "defaultModel": "gemini-2.5-flash",
-      "tokenStorage": "sessionStorage by default, localStorage only on explicit remember"
+      "tokenStorage": "sessionStorage by default, localStorage only on explicit remember",
+      "tokenExportPolicy": "never export API token or secrets",
+      "multimodalInputs": [
+        "text/plain",
+        "text/markdown",
+        "application/json",
+        "text/html",
+        "application/pdf",
+        "image/png",
+        "image/jpeg",
+        "image/webp"
+      ],
+      "modes": [
+        "facilitator",
+        "image",
+        "annex",
+        "tools"
+      ],
+      "functionCalling": [
+        "get_diagnostic_snapshot",
+        "classify_uploaded_annexes",
+        "build_bmad_handoff",
+        "summarize_workshop_context",
+        "clear_gemini_token"
+      ]
     }
   }
 }

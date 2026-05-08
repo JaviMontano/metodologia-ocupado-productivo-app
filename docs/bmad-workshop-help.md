@@ -43,8 +43,18 @@ bmad-help Quiero materializar esta mini app usando el contenido del repo. Dime e
 4. `bmap/prd.md`
 5. `bmap/architecture-brief.md`
 6. `specs/01-functional-spec.md`
-7. `quality/test-plan.md`
+7. `specs/02-technical-spec.md`
+8. `specs/08-traceability.md`
+9. `quality/test-plan.md`
 
 ## Regla de seguridad para Gemini
 
 El API token es BYOK. No se escribe en archivos, no se exporta, no se publica en GitHub y solo se usa para llamadas directas del navegador si el usuario lo pega. [CONFIG]
+
+## Capacidades Gemini del workshop
+
+1. Facilitador BMAD: conversa sobre PRD, arquitectura, epicas, stories, DoD y pruebas. [CONFIG]
+2. Analisis de anexos: usa TXT, MD, JSON, HTML y PDF cargados por el usuario. [CONFIG]
+3. Identificacion responsable de imagenes: describe contenido visible sin identificar personas ni inferir atributos sensibles. [CONFIG]
+4. Function calling local: permite `get_diagnostic_snapshot`, `classify_uploaded_annexes`, `build_bmad_handoff`, `summarize_workshop_context` y `clear_gemini_token`. [CONFIG]
+5. Handoff seguro: exporta transcript, metadata de archivos y tool traces sin token. [CONFIG]

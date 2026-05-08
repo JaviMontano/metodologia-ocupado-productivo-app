@@ -1,6 +1,6 @@
 # De Ocupado a Productivo - Mini App MetodologIA
 
-Repo estatico para ejecutar un taller practico sobre diagnostico del uso del tiempo. [DOC]
+Repo estatico para ejecutar un taller practico sobre diagnostico del uso del tiempo, documentacion funcional/tecnica robusta y handoff BMAD/BMAP con asistente Gemini BYOK opcional. [DOC]
 
 ## Entrada
 
@@ -9,8 +9,8 @@ Abre `index.html` localmente o sube el repo completo a Hostinger manteniendo las
 ## Entregables
 
 1. `index.html`: app stand alone con diagnostico, debate socratico, mapa de tiempo, plan semanal, export BMAD/BMAP y limpieza de sesion.
-2. `documento-funcional.html`: documento funcional independiente.
-3. `documento-tecnico.html`: documento tecnico independiente.
+2. `documento-funcional.html`: documento funcional independiente con indice, journey, requisitos RF, criterios, riesgos y trazabilidad.
+3. `documento-tecnico.html`: blueprint tecnico independiente con arquitectura, componentes, datos, Gemini BYOK, multimodalidad, function calling, seguridad y pruebas.
 4. `journeys/usuario-diagnostico-tiempo.md`: journey unico del usuario.
 5. `prototipos/`: prototipos navegables del mismo journey.
 6. `specs/`: specs SDD.
@@ -19,7 +19,7 @@ Abre `index.html` localmente o sube el repo completo a Hostinger manteniendo las
 
 ## Privacidad
 
-Esta mini app es un material academico de MetodologIA. Opera sin login, guarda datos solo en el navegador y no envia informacion a servidores. El diagnostico es orientativo y no sustituye acompanamiento profesional, medico, psicologico, legal ni laboral.
+Esta mini app es un material academico de MetodologIA. La app base opera sin login, guarda datos solo en el navegador y no envia informacion a servidores. El asistente Gemini es opcional y solo llama una API externa cuando el usuario pega su propio token desde pantalla. El diagnostico es orientativo y no sustituye acompanamiento profesional, medico, psicologico, legal ni laboral.
 
 ## Despliegue manual
 
@@ -31,3 +31,7 @@ Entrada del taller: `workshop-bmad.html`. [DOC]
 BMAD esta instalado para Google Antigravity y Codex con BMM, BMB y TEA. Usa `bmad-help` desde la raiz del repo para detectar el siguiente paso. [CONFIG]
 
 El chatbot Gemini es opcional y BYOK: el estudiante pega su API token de Google AI Studio en el navegador. El token se guarda en `sessionStorage` por defecto y solo en `localStorage` si el usuario activa "Recordar token". No se commitea ni se incluye en exports. [CONFIG]
+
+Capacidades activadas por token: chat de facilitador BMAD, analisis de anexos TXT/MD/JSON/HTML/PDF, identificacion responsable de imagenes PNG/JPG/WEBP y function calling local allowlisted para diagnostico, anexos, resumen de repo, handoff y limpieza de token. [CONFIG]
+
+Nota de produccion: Google documenta que las API keys no deben exponerse directamente en apps cliente de produccion. Este repo mantiene BYOK para taller academico; una version productiva requiere backend o secretos server-side. [DOC]

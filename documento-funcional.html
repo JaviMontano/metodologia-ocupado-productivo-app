@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Documento funcional | MetodologIA</title>
-  <meta name="description" content="Esta mini app es un material academico de MetodologIA. Opera sin login, guarda datos solo en el navegador y no envia informacion a servidores. El diagnostico es orientativo y no sustituye acompanamiento profesional, medico, psicologico, legal ni laboral.">
+  <meta name="description" content="Documento funcional academico de MetodologIA para la mini app De Ocupado a Productivo. Caso ficticio, sin login, con privacidad local y asistente Gemini BYOK opcional.">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
@@ -16,29 +16,201 @@
     </a>
     <nav class="nav"><a class="" href="index.html">App</a><a class="" href="workshop-bmad.html">Workshop BMAD</a><a class="active" href="documento-funcional.html">Documento funcional</a><a class="" href="documento-tecnico.html">Documento tecnico</a><a class="" href="prototipos/index.html">Prototipos</a><a class="" href="specs/00-product-vision.md">Specs</a><a class="" href="bmap/prd.md">BMAP/BMAD</a></nav>
   </header>
-  <main class="wrap doc">
 
+  <main class="wrap doc">
     <header class="doc-hero">
       <span class="eyebrow">Documento funcional independiente</span>
-      <h1>Mini app de diagnostico para pasar de ocupado a productivo.</h1>
-      <p class="lead">Define el problema, el usuario unico, la experiencia de taller, las reglas funcionales, los entregables exportables y los criterios de terminado. [DOC]</p>
-      <aside class="notice"><strong>Privacidad local.</strong> Esta mini app es un material academico de MetodologIA. Opera sin login, guarda datos solo en el navegador y no envia informacion a servidores. El diagnostico es orientativo y no sustituye acompanamiento profesional, medico, psicologico, legal ni laboral.</aside>
+      <h1>De ocupado a productivo, convertido en una practica navegable.</h1>
+      <p class="lead">Este documento define la mini app, sus reglas funcionales, el journey unico, la experiencia de taller, las capacidades Gemini BYOK y los criterios de terminado para entregar un repo estatico publicable en Hostinger. [DOC]</p>
+      <aside class="notice"><strong>Disclaimer academico.</strong> Esta mini app es un material academico de MetodologIA. Opera sin login y guarda datos base solo en el navegador. El asistente Gemini es opcional y solo llama una API externa cuando el usuario pega su propio token. No es apta para produccion sin validacion legal, tecnica, regulatoria, de seguridad y de privacidad. [DOC]</aside>
     </header>
-    <section class="doc-section"><h2>Proposito</h2><p>La app convierte el workshop De Ocupado a Productivo en una practica navegable: capturar actividades, leer patrones, debatir socraticamente y salir con una semana disenada por intencion, no por intensidad. [DOC]</p></section>
-    <section class="doc-section"><h2>Usuario unico</h2><p>El usuario es cualquier estudiante, profesional o participante que quiere diagnosticar como usa su tiempo. No existen roles secundarios, permisos, cuentas, aprobaciones ni perfiles de administrador. [CONFIG]</p></section>
-    <section class="doc-section"><h2>Alcance funcional</h2><div class="spec-grid"><div><strong>Incluye</strong><p>Captura semanal, clasificacion, diagnostico deterministico, preguntas socraticas, plan semanal, export BMAD/BMAP y limpieza de sesion. [DOC]</p></div><div><strong>No incluye</strong><p>No sube datos personales, no crea usuarios, no sincroniza nube, no llama IA remota y no despliega a Hostinger desde la app. [CONFIG]</p></div><div><strong>Uso esperado</strong><p>Abrir localmente o publicar como sitio estatico. En aula, cada estudiante puede correr su propia copia sin configuracion. [SUPUESTO]</p></div></div></section>
-    <section class="doc-section"><h2>Journey lineal</h2><ol><li>La persona abre <code>index.html</code> sin login. [CONFIG]</li><li>Lee el proposito y el aviso de privacidad local. [DOC]</li><li>Ingresa o pega actividades de la semana. [DOC]</li><li>Clasifica horas, impacto, energia, tipo de trabajo e interrupciones. [DOC]</li><li>Recibe diagnostico de ocupacion versus productividad. [CONFIG]</li><li>Entra al debate socratico guiado. [DOC]</li><li>Disena una semana de alto impacto. [DOC]</li><li>Exporta Markdown y JSON para BMAD/BMAP. [CONFIG]</li><li>Limpia sesion con un boton visible. [CONFIG]</li><li>Si esta en taller tecnico, sube el repo completo a Hostinger sin build. [SUPUESTO]</li></ol></section>
-    <section class="doc-section"><h2>Estaciones de la app</h2><div class="spec-grid"><div><strong>Diagnostico</strong><p>Registra actividades y calcula horas totales, indice productivo, rueda de hamster, deuda de foco y energia neta. [CONFIG]</p></div><div><strong>Debate socratico</strong><p>Entrega preguntas segun patrones detectados para mover al usuario de justificacion a decision. [DOC]</p></div><div><strong>Mapa de tiempo</strong><p>Distribuye actividades en cuadrantes impacto/energia para detectar fugas y bloques de alto valor. [CONFIG]</p></div><div><strong>Plan semanal</strong><p>Documenta prioridad unica, deep work, batch operativo, buffer y no deliberado. [DOC]</p></div><div><strong>Export BMAD</strong><p>Genera <code>bmad-input.md</code> y <code>bmap-session.json</code> desde el estado local de la sesion. [CONFIG]</p></div><div><strong>Limpiar sesion</strong><p>Borra la clave local de la app, limpia <code>sessionStorage</code> y recarga el flujo desde cero. [CONFIG]</p></div></div></section>
-    <section class="doc-section"><h2>Reglas funcionales</h2><table class="activity-table"><thead><tr><th>ID</th><th>Regla</th><th>Resultado observable</th></tr></thead><tbody><tr><td>RF-001</td><td>La app opera sin login.</td><td><code>index.html</code> abre y permite usar todas las estaciones. [CONFIG]</td></tr><tr><td>RF-002</td><td>Los datos se guardan solo en navegador.</td><td>El estado persiste en <code>localStorage</code> y no hay llamadas externas. [CONFIG]</td></tr><tr><td>RF-003</td><td>El diagnostico es deterministico.</td><td>La misma entrada produce el mismo score y preguntas. [CONFIG]</td></tr><tr><td>RF-004</td><td>La exportacion es portable.</td><td>El usuario obtiene Markdown y JSON validos. [CONFIG]</td></tr><tr><td>RF-005</td><td>La sesion puede reiniciarse.</td><td>El boton de limpieza deja la app en estado inicial. [CONFIG]</td></tr></tbody></table></section>
-    <section class="doc-section"><h2>Uso en aula</h2><p>El facilitador puede pedir que cada estudiante capture una semana real o use el demo para aprender el flujo. La conversacion se centra en decisiones: que eliminar, que agrupar, que proteger y que evidencia confirma avance. [DOC]</p></section>
-    <section class="doc-section"><h2>Criterio de terminado funcional</h2><p>El paquete esta terminado cuando la app corre sin login, guarda y limpia sesion, exporta BMAD/BMAP, documenta el journey unico, enlaza documentos y prototipos, y puede subirse completo a Hostinger como archivos estaticos. [CONFIG]</p></section>
 
-    <section class="doc-section"><h2>Workshop BMAD + Gemini</h2><p>El paquete incluye <code>workshop-bmad.html</code> como experiencia guiada para materializar la app con BMAD, Antigravity y Codex. El chatbot multimodal es opcional y usa API token propio del usuario; el resto del flujo sigue disponible sin token. [CONFIG]</p></section>
+    <nav class="doc-index" aria-label="Indice del documento funcional">
+      <a href="#lectura">Lectura ejecutiva</a>
+      <a href="#usuario">Usuario unico</a>
+      <a href="#journey">Journey</a>
+      <a href="#requisitos">Requisitos</a>
+      <a href="#gemini">Gemini BYOK</a>
+      <a href="#taller">Taller</a>
+      <a href="#criterios">Aceptacion</a>
+      <a href="#trazabilidad">Trazabilidad</a>
+    </nav>
+
+    <section id="lectura" class="doc-section">
+      <span class="section-kicker">01</span>
+      <h2>Lectura ejecutiva</h2>
+      <p>La app toma una semana de actividades y la convierte en un diagnostico accionable: que consume tiempo, que produce avance, que drena energia, que debe agruparse y que debe dejar de hacerse deliberadamente. [DOC]</p>
+      <div class="spec-grid">
+        <div><strong>Promesa funcional</strong><p>El usuario abre <code>index.html</code>, captura actividades, recibe diagnostico, conversa con preguntas socraticas, disena su semana y exporta insumos BMAD/BMAP. [CONFIG]</p></div>
+        <div><strong>Modelo de operacion</strong><p>El core funciona sin login, sin backend y sin internet. Gemini solo se activa si el usuario pega un API token propio desde pantalla. [CONFIG]</p></div>
+        <div><strong>Resultado del taller</strong><p>El estudiante sale con evidencia local, un plan semanal y un handoff que puede alimentar BMAD, Antigravity, Codex o un pipeline de desarrollo. [DOC]</p></div>
+      </div>
+      <div class="diagram-box" role="img" aria-label="Flujo funcional principal">
+        <pre><code>Entrada semanal -> Diagnostico deterministico -> Debate socratico -> Plan semanal
+       |                         |                       |                |
+       v                         v                       v                v
+ Privacidad local          Scores y patrones       Decisiones        Export BMAD/BMAP
+       \_______________________________________________________________/
+                         Limpiar sesion y reiniciar</code></pre>
+      </div>
+    </section>
+
+    <section id="usuario" class="doc-section">
+      <span class="section-kicker">02</span>
+      <h2>Usuario unico y contexto</h2>
+      <p>El unico usuario funcional es una persona que quiere diagnosticar su uso del tiempo. Puede ser estudiante, profesional, emprendedor, facilitador o participante de workshop, pero esas son facetas de uso, no roles con permisos distintos. [DOC]</p>
+      <table class="activity-table decision-table">
+        <thead><tr><th>Dimension</th><th>Definicion</th><th>Implicacion en producto</th></tr></thead>
+        <tbody>
+          <tr><td>Necesidad</td><td>Entender si su semana esta llena de movimiento o de avance. [DOC]</td><td>La app debe convertir actividades en senales simples y accionables. [CONFIG]</td></tr>
+          <tr><td>Momento de uso</td><td>Workshop, clase, retrospectiva personal o cierre semanal. [SUPUESTO]</td><td>Debe abrir rapido, sin crear cuenta ni preparar entorno. [CONFIG]</td></tr>
+          <tr><td>Riesgo</td><td>El usuario puede pegar informacion personal sensible. [INFERENCIA]</td><td>Debe explicar privacidad local, permitir limpieza visible y no exportar secretos. [CONFIG]</td></tr>
+          <tr><td>Salida esperada</td><td>Diagnostico, preguntas, plan, Markdown y JSON. [DOC]</td><td>Los outputs deben ser legibles por humanos y reutilizables por agentes. [CONFIG]</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="journey" class="doc-section">
+      <span class="section-kicker">03</span>
+      <h2>Journey funcional lineal</h2>
+      <p>El journey no depende de login ni de aprobaciones externas. El asistente Gemini enriquece la experiencia, pero la ruta base debe completarse sin token. [CONFIG]</p>
+      <ol class="journey-list">
+        <li><strong>Abrir.</strong> La persona abre <code>index.html</code> localmente o desde Hostinger y ve el disclaimer academico. [CONFIG]</li>
+        <li><strong>Capturar.</strong> Ingresa o pega actividades de una semana, con horas, impacto, energia, tipo de trabajo e interrupciones. [CONFIG]</li>
+        <li><strong>Diagnosticar.</strong> La app calcula indice productivo, riesgo de rueda de hamster, deuda de foco, energia neta y carga operativa. [CONFIG]</li>
+        <li><strong>Debatir.</strong> El usuario responde preguntas socraticas para pasar de explicacion a decision. [DOC]</li>
+        <li><strong>Planificar.</strong> Define prioridad unica, bloques de deep work, batch operativo, buffer y no deliberado. [DOC]</li>
+        <li><strong>Activar IA opcional.</strong> En <code>workshop-bmad.html</code>, pega token Gemini, carga anexos y conversa con el facilitador BMAD. [CONFIG]</li>
+        <li><strong>Exportar.</strong> Descarga Markdown y JSON para BMAD/BMAP sin incluir token ni secretos. [CONFIG]</li>
+        <li><strong>Reiniciar.</strong> Limpia sesion y token visible si quiere empezar de cero o preparar otra clase. [CONFIG]</li>
+      </ol>
+    </section>
+
+    <section class="doc-section">
+      <span class="section-kicker">04</span>
+      <h2>Estaciones de la app</h2>
+      <table class="activity-table">
+        <thead><tr><th>Estacion</th><th>Entrada</th><th>Procesamiento</th><th>Salida</th></tr></thead>
+        <tbody>
+          <tr><td>Diagnostico</td><td>Actividades semanales. [CONFIG]</td><td>Motor deterministico pondera impacto, energia e interrupciones. [CONFIG]</td><td>Scores y recomendacion pedagogica. [CONFIG]</td></tr>
+          <tr><td>Mapa de tiempo</td><td>Actividades clasificadas. [CONFIG]</td><td>Cuadrantes impacto/energia. [CONFIG]</td><td>Lectura visual de fugas y palancas. [CONFIG]</td></tr>
+          <tr><td>Debate socratico</td><td>Scores y decision libre. [CONFIG]</td><td>Preguntas segun patron dominante. [CONFIG]</td><td>Decision redactada por el usuario. [DOC]</td></tr>
+          <tr><td>Plan semanal</td><td>Decision y diagnostico. [DOC]</td><td>Plantilla de diseno de semana. [CONFIG]</td><td>Plan accionable de cinco campos. [CONFIG]</td></tr>
+          <tr><td>Workshop BMAD</td><td>Repo, anexos y token opcional. [CONFIG]</td><td>Gemini multimodal y tools locales. [CONFIG]</td><td>Guia, handoff y trazas de taller. [CONFIG]</td></tr>
+          <tr><td>Exportar</td><td>Estado local y transcript opcional. [CONFIG]</td><td>Serializacion Markdown/JSON. [CONFIG]</td><td><code>bmad-input.md</code>, <code>bmap-session.json</code> y handoff workshop. [CONFIG]</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="requisitos" class="doc-section">
+      <span class="section-kicker">05</span>
+      <h2>Requisitos funcionales</h2>
+      <p>Los requisitos se agrupan por flujo para que BMAD pueda transformarlos en epicas, stories y pruebas. [DOC]</p>
+      <table class="activity-table">
+        <thead><tr><th>ID</th><th>Requisito</th><th>Resultado observable</th><th>Prueba</th></tr></thead>
+        <tbody>
+          <tr><td>RF-001</td><td>Abrir sin login. [CONFIG]</td><td><code>index.html</code> permite iniciar sin credenciales. [CONFIG]</td><td>TST-SMOKE-001</td></tr>
+          <tr><td>RF-002</td><td>Mostrar aviso academico y privacidad local. [DOC]</td><td>Home, docs y workshop muestran disclaimer. [CONFIG]</td><td>TST-PRIV-001</td></tr>
+          <tr><td>RF-003</td><td>Registrar actividades. [CONFIG]</td><td>Tabla captura nombre, horas, impacto, energia, tipo e interrupciones. [CONFIG]</td><td>TST-FUNC-001</td></tr>
+          <tr><td>RF-004</td><td>Persistir sesion local. [CONFIG]</td><td>Recargar conserva estado en <code>localStorage</code>. [CONFIG]</td><td>TST-STOR-001</td></tr>
+          <tr><td>RF-005</td><td>Calcular diagnostico. [CONFIG]</td><td>Scores cambian ante nuevas actividades. [CONFIG]</td><td>TST-ENG-001</td></tr>
+          <tr><td>RF-006</td><td>Mapear tiempo. [CONFIG]</td><td>Cuadrantes muestran actividades por impacto/energia. [CONFIG]</td><td>TST-ENG-002</td></tr>
+          <tr><td>RF-007</td><td>Guiar debate socratico. [DOC]</td><td>Preguntas cambian segun patron detectado. [CONFIG]</td><td>TST-FUNC-002</td></tr>
+          <tr><td>RF-008</td><td>Disenar plan semanal. [DOC]</td><td>Usuario registra prioridad, deep work, batch, buffer y no deliberado. [CONFIG]</td><td>TST-FUNC-003</td></tr>
+          <tr><td>RF-009</td><td>Exportar Markdown. [CONFIG]</td><td>Descarga <code>bmad-input.md</code>. [CONFIG]</td><td>TST-EXP-001</td></tr>
+          <tr><td>RF-010</td><td>Exportar JSON. [CONFIG]</td><td>Descarga <code>bmap-session.json</code> parseable. [CONFIG]</td><td>TST-EXP-002</td></tr>
+          <tr><td>RF-011</td><td>Limpiar sesion. [CONFIG]</td><td>Boton visible borra storage y reinicia UI. [CONFIG]</td><td>TST-STOR-002</td></tr>
+          <tr><td>RF-012</td><td>Abrir workshop BMAD. [CONFIG]</td><td>Navegacion enlaza <code>workshop-bmad.html</code>. [CONFIG]</td><td>TST-WORKSHOP-001</td></tr>
+          <tr><td>RF-013</td><td>Documentar instalacion BMAD. [DOC]</td><td>Workshop muestra comandos y modulo BMM+BMB+TEA. [CONFIG]</td><td>TST-BMAD-001</td></tr>
+          <tr><td>RF-014</td><td>Activar Gemini con token desde pantalla. [DOC]</td><td>Input de token cambia estado del asistente y habilita envio. [CONFIG]</td><td>TST-GEMINI-001</td></tr>
+          <tr><td>RF-015</td><td>Guardar token solo en navegador. [DOC]</td><td>Sesion por defecto; localStorage solo si el usuario activa recordar. [CONFIG]</td><td>TST-GEMINI-003</td></tr>
+          <tr><td>RF-016</td><td>Borrar token desde UI. [CONFIG]</td><td>Boton elimina token de <code>sessionStorage</code> y <code>localStorage</code>. [CONFIG]</td><td>TST-GEMINI-004</td></tr>
+          <tr><td>RF-017</td><td>Cargar anexos multimodales. [DOC]</td><td>TXT, MD, JSON, HTML, PDF e imagenes aparecen clasificados. [CONFIG]</td><td>TST-GEMINI-002</td></tr>
+          <tr><td>RF-018</td><td>Analizar imagenes. [DOC]</td><td>Modo imagen solicita descripcion, objetos, texto visible y relacion con productividad. [CONFIG]</td><td>TST-GEMINI-005</td></tr>
+          <tr><td>RF-019</td><td>Analizar PDFs y anexos. [DOC]</td><td>Modo anexo resume estructura, hallazgos y riesgos para taller. [CONFIG]</td><td>TST-GEMINI-006</td></tr>
+          <tr><td>RF-020</td><td>Declarar function calling. [DOC]</td><td>Payload incluye tools allowlisted. [CONFIG]</td><td>TST-GEMINI-007</td></tr>
+          <tr><td>RF-021</td><td>Ejecutar tools locales. [DOC]</td><td>Function call conocida produce function response. [CONFIG]</td><td>TST-GEMINI-008</td></tr>
+          <tr><td>RF-022</td><td>Rechazar tools desconocidas. [CONFIG]</td><td>Nombre no allowlisted genera error controlado. [CONFIG]</td><td>TST-GEMINI-009</td></tr>
+          <tr><td>RF-023</td><td>Generar handoff workshop. [CONFIG]</td><td>Markdown y JSON incluyen archivos, transcript y app state. [CONFIG]</td><td>TST-HANDOFF-001</td></tr>
+          <tr><td>RF-024</td><td>No exportar secretos. [CONFIG]</td><td>Exports no contienen token ni patrones de API key. [CONFIG]</td><td>TST-SEC-002</td></tr>
+          <tr><td>RF-025</td><td>Degradar sin internet o sin token. [CONFIG]</td><td>App base sigue funcionando y workshop explica el bloqueo. [CONFIG]</td><td>TST-RES-001</td></tr>
+          <tr><td>RF-026</td><td>Publicar como repo estatico. [SUPUESTO]</td><td>Hostinger sirve archivos sin build ni backend. [CONFIG]</td><td>TST-DEPLOY-001</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="gemini" class="doc-section">
+      <span class="section-kicker">06</span>
+      <h2>Asistente Gemini BYOK y multimodal</h2>
+      <p>El asistente se comporta como facilitador BMAD y mentor del workshop. Se activa solo cuando el usuario pega un token de Google AI Studio en pantalla. Google documenta que una key explicita puede usarse en web para REST, pero tambien advierte que una key real no debe exponerse en cliente para produccion; por eso esta implementacion es academica y BYOK. [DOC]</p>
+      <table class="activity-table">
+        <thead><tr><th>Capacidad</th><th>Comportamiento esperado</th><th>Limite funcional</th></tr></thead>
+        <tbody>
+          <tr><td>Token en pantalla</td><td>Input password, estado visible, guardar en sesion por defecto y recordar solo por opt-in. [CONFIG]</td><td>No se commitea, no se exporta, no se comparte en handoff. [CONFIG]</td></tr>
+          <tr><td>Texto y Markdown</td><td>Se envian como partes de texto truncadas de forma defensiva. [CONFIG]</td><td>Archivos enormes pueden degradar por contexto. [INFERENCIA]</td></tr>
+          <tr><td>PDF</td><td>Se envia como <code>inline_data</code> <code>application/pdf</code> para analisis de documento. [DOC]</td><td>Produccion deberia evaluar Files API, tamano y privacidad. [DOC]</td></tr>
+          <tr><td>Imagen</td><td>Se envia como <code>inline_data</code> <code>image/png</code>, <code>image/jpeg</code> o <code>image/webp</code>. [DOC]</td><td>No hace identificacion de personas ni inferencias sensibles. [SUPUESTO]</td></tr>
+          <tr><td>Function calling</td><td>El modelo puede pedir tools locales para leer diagnostico, clasificar anexos o generar handoff. [DOC]</td><td>Solo se ejecutan funciones allowlisted en JavaScript local. [CONFIG]</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="taller" class="doc-section">
+      <span class="section-kicker">07</span>
+      <h2>Experiencia de taller BMAD</h2>
+      <p>El workshop guia al estudiante por ocho pasos: preparar entorno, instalar BMAD, ejecutar ayuda, cargar repo, conversar con Gemini, generar handoff, publicar GitHub y desplegar Hostinger. [CONFIG]</p>
+      <div class="spec-grid">
+        <div><strong>Entrada pedagogica</strong><p>La teoria De Ocupado a Productivo se practica con datos propios o demo. [DOC]</p></div>
+        <div><strong>Entrada tecnica</strong><p>El repo completo se convierte en material para PRD, arquitectura, epicas, stories y pruebas. [CONFIG]</p></div>
+        <div><strong>Salida agentica</strong><p>El handoff BMAD/BMAP empaqueta diagnostico, anexos, transcript y contexto sin secretos. [CONFIG]</p></div>
+      </div>
+    </section>
+
+    <section id="criterios" class="doc-section">
+      <span class="section-kicker">08</span>
+      <h2>Criterios de aceptacion funcional</h2>
+      <table class="activity-table">
+        <thead><tr><th>Criterio</th><th>Evidencia requerida</th><th>Estado esperado</th></tr></thead>
+        <tbody>
+          <tr><td>App usable sin login. [CONFIG]</td><td>Smoke local abre home, captura actividad y calcula diagnostico. [CONFIG]</td><td>Success</td></tr>
+          <tr><td>Documentacion robusta. [DOC]</td><td>Documento funcional y tecnico tienen indice, tablas, diagramas, riesgos y trazabilidad. [CONFIG]</td><td>Success</td></tr>
+          <tr><td>Gemini activable desde UI. [CONFIG]</td><td>Token cambia estado, payload se genera y sin token no hay llamada externa. [CONFIG]</td><td>Success</td></tr>
+          <tr><td>Multimodalidad controlada. [DOC]</td><td>TXT, MD, JSON, HTML, PDF e imagenes se clasifican y viajan como partes compatibles. [CONFIG]</td><td>Success</td></tr>
+          <tr><td>Secrets protegidos. [CONFIG]</td><td>Busqueda negativa de patrones de token y exports sin API key. [CONFIG]</td><td>Success</td></tr>
+          <tr><td>Repo desplegable. [SUPUESTO]</td><td>Rutas relativas y archivos estaticos listos para Hostinger. [CONFIG]</td><td>Success</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="trazabilidad" class="doc-section">
+      <span class="section-kicker">09</span>
+      <h2>Trazabilidad funcional minima</h2>
+      <table class="activity-table">
+        <thead><tr><th>Bloque</th><th>Requisitos</th><th>Artefactos</th><th>Pruebas</th></tr></thead>
+        <tbody>
+          <tr><td>App base</td><td>RF-001 a RF-011</td><td><code>index.html</code>, <code>assets/app.js</code>, <code>assets/diagnostic-engine.js</code>. [CONFIG]</td><td>TST-SMOKE, TST-FUNC, TST-ENG, TST-STOR</td></tr>
+          <tr><td>Workshop</td><td>RF-012 a RF-016</td><td><code>workshop-bmad.html</code>, <code>docs/bmad-workshop-help.md</code>. [CONFIG]</td><td>TST-WORKSHOP, TST-BMAD, TST-GEMINI</td></tr>
+          <tr><td>Multimodal</td><td>RF-017 a RF-022</td><td><code>assets/gemini-workshop.js</code>. [CONFIG]</td><td>TST-GEMINI-002 a TST-GEMINI-009</td></tr>
+          <tr><td>Export y deploy</td><td>RF-023 a RF-026</td><td><code>assets/exporters.js</code>, <code>bmap/</code>, <code>quality/</code>. [CONFIG]</td><td>TST-HANDOFF, TST-SEC, TST-DEPLOY</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="doc-section">
+      <span class="section-kicker">10</span>
+      <h2>Riesgos, limites y terminado</h2>
+      <div class="spec-grid">
+        <div><strong>Riesgo de privacidad</strong><p>El usuario puede cargar anexos con datos personales. La mitigacion es disclaimer, BYOK, ejecucion local, limpieza visible y no exportar token. [INFERENCIA]</p></div>
+        <div><strong>Riesgo de produccion</strong><p>Google recomienda no usar API keys reales en cliente para produccion; una version productiva requiere backend o secretos server-side. [DOC]</p></div>
+        <div><strong>Definition of Done</strong><p>La entrega queda lista cuando docs, workshop, specs, tests y trazabilidad reflejan app estatica, Gemini opcional, multimodalidad y function calling. [CONFIG]</p></div>
+      </div>
+    </section>
   </main>
+
   <footer class="footer">
     <div class="wrap footer-grid">
-      <div><strong>MetodologIA</strong><p>Esta mini app es un material academico de MetodologIA. Opera sin login, guarda datos solo en el navegador y no envia informacion a servidores. El diagnostico es orientativo y no sustituye acompanamiento profesional, medico, psicologico, legal ni laboral.</p></div>
-      <div><strong>Hostinger ready</strong><p>Sube este repo completo como archivos estaticos. No hay build, backend, login ni base de datos.</p></div>
+      <div><strong>MetodologIA</strong><p>Documento academico ficticio. No sustituye validacion profesional, legal, tecnica, regulatoria, de seguridad ni de privacidad.</p></div>
+      <div><strong>Hostinger ready</strong><p>Sube este repo completo como archivos estaticos. La app base no requiere build, backend, login ni base de datos.</p></div>
     </div>
   </footer>
   <script src="assets/storage.js"></script>

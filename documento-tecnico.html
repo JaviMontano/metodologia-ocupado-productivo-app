@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Documento tecnico | MetodologIA</title>
-  <meta name="description" content="Esta mini app es un material academico de MetodologIA. Opera sin login, guarda datos solo en el navegador y no envia informacion a servidores. El diagnostico es orientativo y no sustituye acompanamiento profesional, medico, psicologico, legal ni laboral.">
+  <meta name="description" content="Blueprint tecnico academico de MetodologIA para la mini app estatica De Ocupado a Productivo, con Gemini BYOK multimodal y function calling local.">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
@@ -16,31 +16,80 @@
     </a>
     <nav class="nav"><a class="" href="index.html">App</a><a class="" href="workshop-bmad.html">Workshop BMAD</a><a class="" href="documento-funcional.html">Documento funcional</a><a class="active" href="documento-tecnico.html">Documento tecnico</a><a class="" href="prototipos/index.html">Prototipos</a><a class="" href="specs/00-product-vision.md">Specs</a><a class="" href="bmap/prd.md">BMAP/BMAD</a></nav>
   </header>
-  <main class="wrap doc">
 
+  <main class="wrap doc">
     <header class="doc-hero">
-      <span class="eyebrow">Documento tecnico independiente</span>
-      <h1>Arquitectura estatica, sin backend, lista para Hostinger.</h1>
-      <p class="lead">Describe runtime, estructura de archivos, modelo de datos, motor de diagnostico, almacenamiento, exportadores, reset y validacion. [CONFIG]</p>
-      <aside class="notice"><strong>Privacidad local.</strong> Esta mini app es un material academico de MetodologIA. Opera sin login, guarda datos solo en el navegador y no envia informacion a servidores. El diagnostico es orientativo y no sustituye acompanamiento profesional, medico, psicologico, legal ni laboral.</aside>
+      <span class="eyebrow">Blueprint tecnico independiente</span>
+      <h1>Arquitectura estatica con IA opcional, controlada desde el navegador.</h1>
+      <p class="lead">Este blueprint describe runtime, componentes, datos, seguridad, Gemini BYOK, multimodalidad, function calling local, exportadores, resiliencia, observabilidad y pruebas. [CONFIG]</p>
+      <aside class="notice"><strong>Disclaimer tecnico.</strong> El repo es academico y estatico. La app base opera sin API externa. El asistente Gemini usa una llamada externa solo cuando el usuario pega un token propio desde pantalla. Para produccion se requiere validacion legal, tecnica, regulatoria, de seguridad y privacidad. [DOC]</aside>
     </header>
-    <section class="doc-section"><h2>Decision de arquitectura</h2><p>La solucion es una aplicacion estatica de navegador. Usa HTML, CSS, JavaScript plano y JSON local; no requiere Node, framework, transpilacion, servidor, base de datos, credenciales ni API externa para operar. [CONFIG]</p></section>
-    <section class="doc-section"><h2>Estructura runtime</h2><pre><code>index.html
-documento-funcional.html
-documento-tecnico.html
-prototipos/
-journeys/
-assets/styles.css
-assets/storage.js
-assets/diagnostic-engine.js
-assets/exporters.js
-assets/app.js
-data/questions.json
-data/rubrics.json
-specs/
-quality/
-bmap/</code></pre></section>
-    <section class="doc-section"><h2>Modelo de datos</h2><pre><code>{
+
+    <nav class="doc-index" aria-label="Indice del documento tecnico">
+      <a href="#arquitectura">Arquitectura</a>
+      <a href="#componentes">Componentes</a>
+      <a href="#datos">Datos</a>
+      <a href="#gemini-tech">Gemini</a>
+      <a href="#tools">Function calling</a>
+      <a href="#seguridad">Seguridad</a>
+      <a href="#resiliencia">Resiliencia</a>
+      <a href="#pruebas">Pruebas</a>
+    </nav>
+
+    <section id="arquitectura" class="doc-section">
+      <span class="section-kicker">01</span>
+      <h2>Decision de arquitectura</h2>
+      <p>La solucion es una aplicacion estatica de navegador: HTML, CSS, JavaScript plano y JSON local. No requiere build, servidor Node, framework, base de datos, cuenta de usuario ni backend para la experiencia base. [CONFIG]</p>
+      <table class="activity-table decision-table">
+        <thead><tr><th>Decision</th><th>Motivo</th><th>Alternativa descartada</th><th>Consecuencia</th></tr></thead>
+        <tbody>
+          <tr><td>SPA estatica ligera. [CONFIG]</td><td>Hostinger puede servir archivos tal cual. [SUPUESTO]</td><td>Framework con build. [INFERENCIA]</td><td>Menos dependencias, mas responsabilidad manual en JS. [INFERENCIA]</td></tr>
+          <tr><td>Persistencia en navegador. [CONFIG]</td><td>Privacidad local y uso sin login. [DOC]</td><td>Base de datos remota. [INFERENCIA]</td><td>El usuario controla limpieza y no hay sincronizacion multi-dispositivo. [CONFIG]</td></tr>
+          <tr><td>Gemini BYOK opcional. [CONFIG]</td><td>El taller puede operar sin backend y sin secreto del repo. [DOC]</td><td>API key commiteada o proxy propio. [CONFIG]</td><td>No es patron productivo para keys reales en cliente. [DOC]</td></tr>
+          <tr><td>Function calling local allowlisted. [CONFIG]</td><td>Permite que Gemini use contexto real sin dar acceso arbitrario. [DOC]</td><td>Ejecutar comandos o codigo dinamico. [CONFIG]</td><td>La superficie de tools es pequena y testeable. [CONFIG]</td></tr>
+        </tbody>
+      </table>
+      <div class="diagram-box">
+        <pre><code>Browser
+  |
+  |-- index.html --------------------> Diagnostic engine + storage + exporters
+  |
+  |-- workshop-bmad.html ------------> Gemini workshop client
+             |                              |
+             | reads local repo/docs        | optional external call
+             v                              v
+        repo context + uploaded files   Gemini generateContent
+             |                              |
+             v                              v
+        local tools allowlist <-------- functionCall/functionResponse</code></pre>
+      </div>
+    </section>
+
+    <section id="componentes" class="doc-section">
+      <span class="section-kicker">02</span>
+      <h2>Catalogo de componentes</h2>
+      <table class="activity-table">
+        <thead><tr><th>Componente</th><th>Responsabilidad</th><th>Entradas</th><th>Salidas</th></tr></thead>
+        <tbody>
+          <tr><td><code>index.html</code></td><td>App principal y estaciones de diagnostico. [CONFIG]</td><td>Actividades, decision, plan. [CONFIG]</td><td>Estado local, diagnostico, export base. [CONFIG]</td></tr>
+          <tr><td><code>workshop-bmad.html</code></td><td>Stepper de taller, token, anexos y handoff. [CONFIG]</td><td>Token, archivos, preguntas, contexto repo. [CONFIG]</td><td>Transcript, handoff MD/JSON, llamadas Gemini opcionales. [CONFIG]</td></tr>
+          <tr><td><code>assets/storage.js</code></td><td>Persistencia y limpieza. [CONFIG]</td><td>Estado parcial. [CONFIG]</td><td><code>localStorage</code> serializado. [CONFIG]</td></tr>
+          <tr><td><code>assets/diagnostic-engine.js</code></td><td>Scores deterministas y preguntas. [CONFIG]</td><td>Lista de actividades. [CONFIG]</td><td>Productive index, riesgo, deuda de foco, energia, buckets. [CONFIG]</td></tr>
+          <tr><td><code>assets/exporters.js</code></td><td>Export BMAD/BMAP de app base. [CONFIG]</td><td>Estado + diagnostico. [CONFIG]</td><td>Markdown y JSON descargables. [CONFIG]</td></tr>
+          <tr><td><code>assets/gemini-workshop.js</code></td><td>BYOK, multimodalidad, function calling y handoff workshop. [CONFIG]</td><td>Token, modelo, archivos, transcript, repo context. [CONFIG]</td><td>Payload Gemini, respuestas, tool traces, handoff. [CONFIG]</td></tr>
+          <tr><td><code>specs/</code>, <code>quality/</code>, <code>bmap/</code></td><td>Entrada de Spec Driven Development y BMAD. [DOC]</td><td>Requisitos, criterios, plan de pruebas. [DOC]</td><td>Contexto para PRD, arquitectura, epicas y stories. [DOC]</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="datos" class="doc-section">
+      <span class="section-kicker">03</span>
+      <h2>Modelo de datos y almacenamiento</h2>
+      <p>La clave principal de app base es <code>metodologia.ocupadoProductivo.session.v1</code>. Los tokens Gemini usan claves separadas para evitar mezclarlos con exports funcionales. [CONFIG]</p>
+      <div class="split-code">
+        <div>
+          <h3>Estado de diagnostico</h3>
+          <pre><code>{
   "activities": [
     {
       "name": "Diseno de propuesta clave",
@@ -51,7 +100,7 @@ bmap/</code></pre></section>
       "interruptions": false
     }
   ],
-  "decision": "Texto libre del debate socratico",
+  "decision": "Texto libre",
   "plan": {
     "priority": "",
     "deep": "",
@@ -60,20 +109,172 @@ bmap/</code></pre></section>
     "no": ""
   },
   "updatedAt": "ISO-8601"
-}</code></pre></section>
-    <section class="doc-section"><h2>Persistencia</h2><p><code>assets/storage.js</code> encapsula lectura, escritura y limpieza. La clave de almacenamiento es <code>metodologia.ocupadoProductivo.session.v1</code>. La app nunca necesita cookies ni sesion remota. [CONFIG]</p></section>
-    <section class="doc-section"><h2>Motor de diagnostico</h2><p><code>assets/diagnostic-engine.js</code> calcula horas totales, cuadrantes impacto/energia, indice productivo, riesgo de rueda de hamster, deuda de foco, carga operativa y energia neta. El algoritmo pondera impacto, energia e interrupciones para producir una orientacion pedagogica, no una verdad clinica o laboral. [CONFIG]</p></section>
-    <section class="doc-section"><h2>Exportadores</h2><p><code>assets/exporters.js</code> crea dos contratos de salida: <code>bmad-input.md</code> para lectura humana y <code>bmap-session.json</code> para pipelines agenticos. Ambos se generan localmente con <code>Blob</code> y descarga del navegador. [CONFIG]</p></section>
-    <section class="doc-section"><h2>Compatibilidad Hostinger</h2><p>El repo completo puede subirse por File Manager o FTP manteniendo rutas relativas. El archivo de entrada debe quedar como <code>public_html/index.html</code> o dentro de una subcarpeta preservando <code>assets/</code>, <code>data/</code>, <code>prototipos/</code>, <code>specs/</code>, <code>quality/</code> y <code>bmap/</code>. [CONFIG]</p></section>
-    <section class="doc-section"><h2>Controles de seguridad y privacidad</h2><div class="spec-grid"><div><strong>Datos locales</strong><p>No hay transmision de informacion personal a servidores. [CONFIG]</p></div><div><strong>Sin dependencias externas</strong><p>No se cargan CDN, fuentes remotas ni SDKs. [CONFIG]</p></div><div><strong>Reset visible</strong><p>El usuario puede borrar el estado local desde la UI. [CONFIG]</p></div></div></section>
-    <section class="doc-section"><h2>Validacion tecnica</h2><ol><li>Todos los HTML cierran con <code>&lt;/html&gt;</code>. [CONFIG]</li><li>Todos los links y scripts locales existen. [CONFIG]</li><li>Los JavaScript pasan parseo con <code>node --check</code>. [CONFIG]</li><li>No hay referencias a APIs externas operativas. [CONFIG]</li><li>El smoke con navegador confirma export, persistencia y limpieza. [CONFIG]</li></ol></section>
+}</code></pre>
+        </div>
+        <div>
+          <h3>Estado workshop</h3>
+          <pre><code>{
+  "repoContextLoaded": ["README.md"],
+  "files": [
+    {
+      "name": "agenda.pdf",
+      "mime": "application/pdf",
+      "kind": "inline",
+      "capability": "document"
+    }
+  ],
+  "transcript": [],
+  "toolTraces": []
+}</code></pre>
+        </div>
+      </div>
+      <table class="activity-table">
+        <thead><tr><th>Clave</th><th>Storage</th><th>Contenido</th><th>Exportable</th></tr></thead>
+        <tbody>
+          <tr><td><code>metodologia.ocupadoProductivo.session.v1</code></td><td><code>localStorage</code>. [CONFIG]</td><td>Actividades, decision y plan. [CONFIG]</td><td>Si, por diseño. [CONFIG]</td></tr>
+          <tr><td><code>metodologia.gemini.apiToken.session</code></td><td><code>sessionStorage</code>. [CONFIG]</td><td>Token temporal. [CONFIG]</td><td>No. [CONFIG]</td></tr>
+          <tr><td><code>metodologia.gemini.apiToken.local</code></td><td><code>localStorage</code> opt-in. [CONFIG]</td><td>Token recordado por decision explicita. [CONFIG]</td><td>No. [CONFIG]</td></tr>
+        </tbody>
+      </table>
+    </section>
 
-    <section class="doc-section"><h2>Integracion opcional Gemini</h2><p><code>assets/gemini-workshop.js</code> implementa un cliente BYOK para Gemini. Lee archivos locales del usuario en el navegador, arma partes multimodales para texto, PDF e imagenes, y llama <code>generateContent</code> solo cuando hay token. El token no se exporta ni se versiona. [CONFIG]</p></section>
+    <section id="gemini-tech" class="doc-section">
+      <span class="section-kicker">04</span>
+      <h2>Gemini API, archivos y modos de analisis</h2>
+      <p>Google AI Studio permite crear y administrar API keys; la API Gemini soporta prompts multimodales con texto, imagenes y documentos. La app usa REST <code>generateContent</code> para no depender de SDKs ni bundlers. [DOC]</p>
+      <table class="activity-table">
+        <thead><tr><th>Tipo</th><th>MIME aceptado</th><th>Tratamiento</th><th>Modo recomendado</th></tr></thead>
+        <tbody>
+          <tr><td>Texto</td><td><code>text/plain</code>, <code>text/markdown</code>, <code>application/json</code>, <code>text/html</code>. [CONFIG]</td><td>Se agrega como parte <code>text</code> con encabezado de archivo. [CONFIG]</td><td>Facilitador o anexo. [CONFIG]</td></tr>
+          <tr><td>PDF</td><td><code>application/pdf</code>. [DOC]</td><td>Se agrega como <code>inline_data</code>. [CONFIG]</td><td>Analisis de anexo. [CONFIG]</td></tr>
+          <tr><td>Imagen</td><td><code>image/png</code>, <code>image/jpeg</code>, <code>image/webp</code>. [DOC]</td><td>Se agrega como <code>inline_data</code>. [CONFIG]</td><td>Identificacion visual controlada. [CONFIG]</td></tr>
+          <tr><td>No soportado</td><td>Otros MIME. [INFERENCIA]</td><td>Se clasifica como no soportado y no se promete analisis. [CONFIG]</td><td>Degradado. [CONFIG]</td></tr>
+        </tbody>
+      </table>
+      <div class="diagram-box">
+        <pre><code>Usuario pega token -> saveToken()
+Usuario carga archivos -> FileReader -> classifyFiles()
+Usuario envia pregunta -> buildPayload()
+  -> contents.parts[text + inline_data]
+  -> tools.functionDeclarations
+  -> POST /v1beta/models/{model}:generateContent
+  -> respuesta directa o functionCall
+  -> executeToolCall()
+  -> functionResponse
+  -> respuesta final al usuario</code></pre>
+      </div>
+    </section>
+
+    <section id="tools" class="doc-section">
+      <span class="section-kicker">05</span>
+      <h2>Function calling local</h2>
+      <p>Function calling permite que el modelo pida funciones declaradas y que la aplicacion ejecute el codigo correspondiente; la responsabilidad de ejecutar y devolver el resultado es de la aplicacion. [DOC]</p>
+      <table class="activity-table">
+        <thead><tr><th>Funcion</th><th>Proposito</th><th>Datos que lee</th><th>Restriccion</th></tr></thead>
+        <tbody>
+          <tr><td><code>get_diagnostic_snapshot</code></td><td>Leer estado actual y diagnostico. [CONFIG]</td><td><code>MOPStorage</code> y <code>MOPDiagnostic</code>. [CONFIG]</td><td>No modifica datos. [CONFIG]</td></tr>
+          <tr><td><code>classify_uploaded_annexes</code></td><td>Listar anexos, MIME, peso y capacidad. [CONFIG]</td><td>Memoria local de archivos cargados. [CONFIG]</td><td>No envia contenido completo en tool result. [CONFIG]</td></tr>
+          <tr><td><code>build_bmad_handoff</code></td><td>Generar handoff Markdown/JSON. [CONFIG]</td><td>Transcript, archivos, app state. [CONFIG]</td><td>Excluye tokens. [CONFIG]</td></tr>
+          <tr><td><code>summarize_workshop_context</code></td><td>Resumir documentos cargados del repo. [CONFIG]</td><td>Contexto repo truncado. [CONFIG]</td><td>No accede al filesystem, solo a fetch relativo. [CONFIG]</td></tr>
+          <tr><td><code>clear_gemini_token</code></td><td>Borrar token de navegador si el usuario lo pide. [CONFIG]</td><td>Claves token. [CONFIG]</td><td>No borra diagnostico salvo boton separado. [CONFIG]</td></tr>
+        </tbody>
+      </table>
+      <pre><code>{
+  "tools": [
+    {
+      "functionDeclarations": [
+        {
+          "name": "get_diagnostic_snapshot",
+          "description": "Returns current local diagnostic state without secrets.",
+          "parameters": { "type": "object", "properties": {} }
+        }
+      ]
+    }
+  ]
+}</code></pre>
+    </section>
+
+    <section id="seguridad" class="doc-section">
+      <span class="section-kicker">06</span>
+      <h2>Seguridad y privacidad</h2>
+      <p>Google advierte que las API keys deben tratarse como contrasenas y que una key real no debe exponerse directamente en apps web o moviles de produccion. Esta app conserva el patron BYOK solo para el contexto academico y documenta el salto productivo necesario. [DOC]</p>
+      <table class="activity-table">
+        <thead><tr><th>Control</th><th>Implementacion</th><th>Validacion</th></tr></thead>
+        <tbody>
+          <tr><td>No secretos en repo. [CONFIG]</td><td>No hay token hardcoded y `.gitignore` cubre `.env`. [CONFIG]</td><td>Busqueda negativa de patrones de API key Google. [CONFIG]</td></tr>
+          <tr><td>Token por sesion. [CONFIG]</td><td><code>sessionStorage</code> por defecto. [CONFIG]</td><td>Recargar conserva; cerrar pestana limpia. [INFERENCIA]</td></tr>
+          <tr><td>Recordar explicito. [CONFIG]</td><td><code>localStorage</code> solo si checkbox esta activo. [CONFIG]</td><td>UI muestra estado recordado. [CONFIG]</td></tr>
+          <tr><td>Borrado visible. [CONFIG]</td><td>Boton borra claves Gemini. [CONFIG]</td><td>Estado vuelve a bloqueado. [CONFIG]</td></tr>
+          <tr><td>Exports sin token. [CONFIG]</td><td>Handoff serializa metadata, transcript y app state, no token. [CONFIG]</td><td>Tests buscan ausencia de token y patrones. [CONFIG]</td></tr>
+          <tr><td>Imagenes responsables. [SUPUESTO]</td><td>Prompt prohibe identificacion personal e inferencias sensibles. [CONFIG]</td><td>Smoke revisa instrucciones del modo imagen. [CONFIG]</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="resiliencia" class="doc-section">
+      <span class="section-kicker">07</span>
+      <h2>Resiliencia, errores y degradacion</h2>
+      <table class="activity-table">
+        <thead><tr><th>Falla</th><th>Comportamiento esperado</th><th>Mensaje al usuario</th></tr></thead>
+        <tbody>
+          <tr><td>Sin token. [CONFIG]</td><td>No se llama a Gemini. [CONFIG]</td><td>Indica pegar token para activar IA. [CONFIG]</td></tr>
+          <tr><td>Token invalido o cuota. [INFERENCIA]</td><td>Se captura error HTTP y se muestra resumen. [CONFIG]</td><td>Error al llamar Gemini con detalle acotado. [CONFIG]</td></tr>
+          <tr><td>Archivo no soportado. [CONFIG]</td><td>Se clasifica como no soportado. [CONFIG]</td><td>Explica que no se promete analisis. [CONFIG]</td></tr>
+          <tr><td>PDF grande. [DOC]</td><td>Puede fallar por tamano o latencia. [INFERENCIA]</td><td>Sugerir reducir o usar Files API en version productiva. [DOC]</td></tr>
+          <tr><td>Function call desconocida. [CONFIG]</td><td>Se rechaza por allowlist. [CONFIG]</td><td>Tool no permitida. [CONFIG]</td></tr>
+          <tr><td>Fetch relativo bloqueado localmente. [INFERENCIA]</td><td>Contexto repo queda degradado. [CONFIG]</td><td>Lista documentos no cargados y permite cargar archivos manualmente. [CONFIG]</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="doc-section">
+      <span class="section-kicker">08</span>
+      <h2>Observabilidad local</h2>
+      <p>La observabilidad se mantiene dentro del navegador: estado de token, lista de archivos, contexto cargado, transcript, tool traces y handoff generado. No hay telemetria remota. [CONFIG]</p>
+      <div class="spec-grid">
+        <div><strong>Estado visible</strong><p>El workshop muestra si Gemini esta bloqueado, activo en sesion o recordado en navegador. [CONFIG]</p></div>
+        <div><strong>Archivos clasificados</strong><p>Cada anexo muestra MIME, peso, kind y capacidad. [CONFIG]</p></div>
+        <div><strong>Tool traces</strong><p>Cada function call local queda registrada en memoria del taller y en handoff sin secretos. [CONFIG]</p></div>
+      </div>
+    </section>
+
+    <section id="pruebas" class="doc-section">
+      <span class="section-kicker">09</span>
+      <h2>Matriz tecnica de pruebas</h2>
+      <table class="activity-table">
+        <thead><tr><th>ID</th><th>Capa</th><th>Escenario</th><th>Evidencia</th></tr></thead>
+        <tbody>
+          <tr><td>TST-SMOKE-001</td><td>HTML</td><td>Home, documentos, prototipos y workshop abren. [CONFIG]</td><td>Links locales y cierre <code>&lt;/html&gt;</code>. [CONFIG]</td></tr>
+          <tr><td>TST-ENG-001</td><td>JS</td><td>Diagnostico deterministico con demo. [CONFIG]</td><td>Scores esperados. [CONFIG]</td></tr>
+          <tr><td>TST-GEMINI-001</td><td>Seguridad</td><td>Sin token no hay llamada externa. [CONFIG]</td><td>Mensaje bloqueado. [CONFIG]</td></tr>
+          <tr><td>TST-GEMINI-002</td><td>Multimodal</td><td>TXT, MD, JSON, HTML, PDF e imagen se clasifican. [CONFIG]</td><td>Lista de archivos y payload compatible. [CONFIG]</td></tr>
+          <tr><td>TST-GEMINI-007</td><td>Tools</td><td>Payload incluye function declarations. [CONFIG]</td><td><code>buildPayload()</code> expone tools. [CONFIG]</td></tr>
+          <tr><td>TST-GEMINI-008</td><td>Tools</td><td>Tool allowlisted devuelve resultado. [CONFIG]</td><td><code>executeToolCall()</code> retorna JSON. [CONFIG]</td></tr>
+          <tr><td>TST-GEMINI-009</td><td>Tools</td><td>Tool desconocida se rechaza. [CONFIG]</td><td>Error controlado. [CONFIG]</td></tr>
+          <tr><td>TST-SEC-002</td><td>Seguridad</td><td>Exports no contienen tokens ni patrones. [CONFIG]</td><td>Busqueda negativa de patrones de API key Google. [CONFIG]</td></tr>
+          <tr><td>TST-DEPLOY-001</td><td>Deploy</td><td>Repo sube a Hostinger sin build. [SUPUESTO]</td><td>Rutas relativas y assets presentes. [CONFIG]</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="doc-section">
+      <span class="section-kicker">10</span>
+      <h2>Fuentes tecnicas oficiales</h2>
+      <ul class="source-list">
+        <li><a href="https://ai.google.dev/gemini-api/docs/api-key">Google AI for Developers: API keys</a>. [DOC]</li>
+        <li><a href="https://ai.google.dev/gemini-api/docs/aistudio-build-mode">Google AI Studio Build mode</a>. [DOC]</li>
+        <li><a href="https://ai.google.dev/gemini-api/docs/function-calling">Gemini API function calling</a>. [DOC]</li>
+        <li><a href="https://ai.google.dev/gemini-api/docs/image-understanding">Gemini image understanding</a>. [DOC]</li>
+        <li><a href="https://ai.google.dev/gemini-api/docs/document-processing">Gemini document understanding</a>. [DOC]</li>
+        <li><a href="https://ai.google.dev/gemini-api/docs/files#prompt-guide">Gemini Files API and file prompting</a>. [DOC]</li>
+      </ul>
+    </section>
   </main>
+
   <footer class="footer">
     <div class="wrap footer-grid">
-      <div><strong>MetodologIA</strong><p>Esta mini app es un material academico de MetodologIA. Opera sin login, guarda datos solo en el navegador y no envia informacion a servidores. El diagnostico es orientativo y no sustituye acompanamiento profesional, medico, psicologico, legal ni laboral.</p></div>
-      <div><strong>Hostinger ready</strong><p>Sube este repo completo como archivos estaticos. No hay build, backend, login ni base de datos.</p></div>
+      <div><strong>MetodologIA</strong><p>Blueprint academico ficticio. No sustituye validacion profesional, legal, tecnica, regulatoria, de seguridad ni privacidad.</p></div>
+      <div><strong>Hostinger ready</strong><p>Sube este repo completo como archivos estaticos. La app base no requiere build, backend, login ni base de datos.</p></div>
     </div>
   </footer>
   <script src="assets/storage.js"></script>
